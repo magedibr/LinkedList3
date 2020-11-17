@@ -10,10 +10,10 @@ int main() {
     struct node *head = NULL;
 
     int i, go = 1, choice, val1, val2, val3, val4;
-
+int r_Id;
     float fval1;
 
-    struct household h1;
+    struct household userHouse;
 
     char filename[20];
 
@@ -29,6 +29,7 @@ int main() {
 
     }
 
+    //turn into a func that accepts head as a parameter?
     while(go) {
 
         printf("\n\n***Population Info Menu***\n");
@@ -163,35 +164,8 @@ int main() {
 
             case 10:
 
-                val1 = getRegion();
+             userAdd(head,userHouse);
 
-                h1.region = (char *)malloc(sizeof(char) * strlen(regions[val1]));
-
-                strcpy(h1.region,regions[val1]);
-
-                val2 = getTownInRegion(val1);
-
-                h1.town = (char *)malloc(sizeof(char) * strlen(towns[val2]));
-
-                strcpy(h1.town,towns[val2]);
-
-                val3 = getRace();
-
-                h1.race_of_head = (char *)malloc(sizeof(char) * strlen(races[val3]));
-
-                strcpy(h1.race_of_head,races[val3]);
-
-                printf("Enter family size : ");
-
-                scanf("%d",&h1.h_Size);
-
-                printf("Enter family income: ");
-
-                scanf("%f",&h1.h_Size);
-
-                add(&head,h1);
-
-                printf("Record Successfully added\n");
 
                 break;
 

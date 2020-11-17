@@ -23,10 +23,8 @@ struct household {
     int un20;
     int bt2050;
     int abv50;
-
-
     //int chronDu50;
-    struct houseinfo *houseinfo;
+
 };
 
 
@@ -63,8 +61,6 @@ int getTown();
 int getRace();
 int getTownInRegion(int regInd);
 
-void userAdd();
-void selectionSort(int arr[], int n);
-void swap(int *xp, int *yp);
+void userAdd(struct  node *head,struct household userHouse);
 void getRank(struct node *head);
 #endif //ABDELRAHMANMOHAMEDASSIGN3_INFORMATION_H

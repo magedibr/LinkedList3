@@ -796,36 +796,64 @@ void getRank(struct node *head){
 
 
 
-void useradd(){
+void validateSize()
 
-    val1 = getRegion();
 
-    h1.region = (char *)malloc(sizeof(char) * strlen(regions[val1]));
 
-    strcpy(h1.region,regions[val1]);
 
-    val2 = getTownInRegion(val1);
 
-    h1.town = (char *)malloc(sizeof(char) * strlen(towns[val2]));
 
-    strcpy(h1.town,towns[val2]);
 
-    val3 = getRace();
 
-    h1.race_of_head = (char *)malloc(sizeof(char) * strlen(races[val3]));
 
-    strcpy(h1.race_of_head,races[val3]);
+void userAdd(struct node *head,struct household userHouse){
 
-    printf("Enter family size : ");
+     int r_Id = getRegion();
+    userHouse.region = (char *)malloc(sizeof(char) * strlen(regions[r_Id]));
+    strcpy(userHouse.region,regions[r_Id]);
 
-    scanf("%d",&h1.h_Size);
 
-    printf("Enter family income: ");
+    int tr_Id = getTownInRegion(r_Id);
+    userHouse.town = (char *)malloc(sizeof(char) * strlen(towns[tr_Id]));
+    strcpy(userHouse.town,towns[tr_Id]);
 
-    scanf("%f",&h1.h_Size);
 
-    add(&head,h1);
+    int rc_Id = getRace();
+    userHouse.race_of_head = (char *)malloc(sizeof(char) * strlen(races[rc_Id ]));
+    strcpy(userHouse.race_of_head,races[rc_Id]);
 
-    printf("Record Successfully added\n");
+
+    printf("Enter family size :\n");
+    scanf("%d",&userHouse.h_Size);
+
+    printf("Enter number of people tested:\n");
+    scanf("%d",&userHouse.tested);
+
+    printf("Enter number of positive cases:\n");
+    scanf("%d",&userHouse.positive);
+
+    printf("Number of people below 20:\n");
+    scanf("%d",&userHouse.un20);
+
+    printf("Enter number of people between the ages of 20-50:\n");
+    scanf("%d",&userHouse.bt2050);
+
+    printf("Enter number of people over 50:\n");
+    scanf("%d",&userHouse.abv50);
+
+
+    int validate=userHouse.un20+userHouse.bt2050+userHouse.abv50;
+
+    if(validate>userHouse.h_Size){
+        puts("Sum of people in the household can not be above the number of people above and below 50!");
+        userAdd(head,userHouse);}
+
+
+
+        printHousehold(userHouse);
+
+    add(&head,userHouse);
+
 
 }
+
