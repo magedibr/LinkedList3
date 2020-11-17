@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/ab/Desktop/C:C++/AbdelrahmanMohamedAssign3/information.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+time.h
+-
+information.h
+/Users/ab/Desktop/C:C++/AbdelrahmanMohamedAssign3/information.h
+
+/Users/ab/Desktop/C:C++/AbdelrahmanMohamedAssign3/information.h
+
+/Users/ab/Desktop/C:C++/AbdelrahmanMohamedAssign3/main.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+time.h
+-
+information.h
+/Users/ab/Desktop/C:C++/AbdelrahmanMohamedAssign3/information.h
+
