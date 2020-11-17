@@ -351,13 +351,13 @@ void displayTestedAboveThresh(struct node *head, float lb) {
 
 
         if( strcmp(temp->house.region,regions[v_Reg])==0)
-           if (temp->house.tested >= (int)lb)
-               printHousehold(temp->house);
+            if (temp->house.tested >= (int)lb)
+                printHousehold(temp->house);
 
         temp = temp->next;
-        }
-
     }
+
+}
 
 
 
@@ -727,52 +727,36 @@ void getRank(struct node *head){
     static const char *regions[] = {"Peel","York","Dorm"};
     static const char *towns[] = {"Brampton","Mississauga","Maple","Vaughan","Whitby","Oshawa"};
 
-
     while(temp->next!=NULL){
 
-        if(strcmp(temp->house.region,"Peel")==0)reg_P++;
-        if(strcmp(temp->house.region,"York")==0)reg_Y++;
-        if(strcmp(temp->house.region,"Dorm")==0)reg_D++;
+        if(strcmp(temp->house.region,"Peel")==0)reg_P+=temp->house.tested;
+        if(strcmp(temp->house.region,"York")==0)reg_Y+=temp->house.tested;
+        if(strcmp(temp->house.region,"Dorm")==0)reg_D+=temp->house.tested;
 
-
-        if(strcmp(temp->house.region,"Brampton")==0)twn_brmp++;
-        if(strcmp(temp->house.region,"Mississauga")==0)twn_Miss++;
-        if(strcmp(temp->house.region,"Maple")==0)twn_Map++;
-        if(strcmp(temp->house.region,"Vaughan")==0)twn_Va++;
-        if(strcmp(temp->house.region,"Whitby")==0)twn_Whi++;
-        if(strcmp(temp->house.region,"Oshawa")==0)twn_Osh++;
+        if(strcmp(temp->house.town,"Brampton")==0)twn_brmp+=temp->house.tested;
+        if(strcmp(temp->house.town,"Mississauga")==0)twn_Miss+=temp->house.tested;
+        if(strcmp(temp->house.town,"Maple")==0)twn_Map+=temp->house.tested;
+        if(strcmp(temp->house.town,"Vaughan")==0)twn_Va+=temp->house.tested;
+        if(strcmp(temp->house.town,"Whitby")==0)twn_Whi+=temp->house.tested;
+        if(strcmp(temp->house.town,"Oshawa")==0)twn_Osh+=temp->house.tested;
 
         temp=temp->next;
 
     }
 
 
-    int regArr[]={reg_P,reg_Y,reg_D};
+    puts("Town wise ranking of regions with highest number of people tested Positive for Covid-19");
+
+    printf("Peel: %d \n York: %d \n Durham: %d\n\n",reg_P,reg_Y,reg_D);
+
+    printf("Town-wise distribution:"
+           "\n Brampton: %d"
+           "\n Mississauga: %d"
+           "\n Maple: %d"
+           "\n Vaughan: %d"
+           "\n Whitby: %d"
+           "\n Oshawa: %d",twn_brmp,twn_Miss,twn_Map,twn_Va,twn_Whi,twn_Osh);
 
 
 
-}
-void swap(int *xp, int *yp)
-{
-    int temp = *xp;
-    *xp = *yp;
-    *yp = temp;
-}
-
-void selectionSort(int arr[], int n)
-{
-    int i, j, min_idx;
-
-    // One by one move boundary of unsorted subarray
-    for (i = 0; i < n-1; i++)
-    {
-        // Find the minimum element in unsorted array
-        min_idx = i;
-        for (j = i+1; j < n; j++)
-            if (arr[j] < arr[min_idx])
-                min_idx = j;
-
-        // Swap the found minimum element with the first element
-        swap(&arr[min_idx], &arr[i]);
-    }
 }
