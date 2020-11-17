@@ -68,6 +68,18 @@ struct node *randomNode() {
     int r_positive= rand()% r_tested+1;
     temp->house.positive=r_positive;
 
+    //Assign random under 20
+    int under20 = rand()% r_size;
+    temp->house.houseinfo->un20=under20;
+
+
+
+
+
+
+
+
+
     temp->next = NULL;
 
     return temp;
@@ -756,7 +768,4 @@ void getRank(struct node *head){
            "\n Vaughan: %d"
            "\n Whitby: %d"
            "\n Oshawa: %d",twn_brmp,twn_Miss,twn_Map,twn_Va,twn_Whi,twn_Osh);
-
-
-
 }

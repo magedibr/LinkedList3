@@ -12,6 +12,18 @@ static const char *towns[] = {"Brampton","Mississauga","Maple","Vaughan","Whitby
 
 static const char *races[] = {"Caucasian", "Indigenous", "African American", "Asian", "Other"};
 
+
+
+struct houseinfo{
+    int un20;
+    int bt2050;
+    int abv50;
+    int chronDu50;
+};
+
+
+
+
 struct household {
     char* race_of_head;
     char* region;
@@ -20,14 +32,14 @@ struct household {
     int tested;
     int positive;
 
+    struct houseinfo *houseinfo;
 };
 
+
+
 struct node {
-
     struct household house;
-
     struct node *next;
-
 };
 
 struct node * newNode(struct household house);
