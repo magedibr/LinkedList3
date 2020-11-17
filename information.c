@@ -27,9 +27,16 @@ struct node * newNode(struct household house) {
 
     temp->house.positive=house.positive;
 
+    temp->house.un20=house.un20;
+
+    temp->house.bt2050=house.bt2050;
+
+    temp->house.abv50=house.abv50;
+
     temp->next = NULL;
 
     return temp;
+
 
 }
 
@@ -56,9 +63,26 @@ struct node *randomNode() {
     temp->house.town = (char *)malloc(sizeof(char) * strlen(towns[town_ind]));
     strcpy(temp->house.town,towns[town_ind]);
 
+    ///malloc needed?
     //Assign random size from 1-10 members
     int r_size = rand() % 10 + 1;
     temp->house.h_Size = r_size;
+
+
+    //Assign random under 20
+    int under20 = rand()% r_size;
+    temp->house.un20=under20;
+
+
+        int j = r_size-under20;  //20++
+
+
+        int btw = rand()%j;
+        temp->house.bt2050=btw;
+
+        int abv = r_size-(under20+btw);
+        temp->house.abv50=abv;
+
 
     //Assign random tested qty
     int r_tested = rand()% r_size+ 1;
@@ -67,14 +91,6 @@ struct node *randomNode() {
     //Assign random positivity rate
     int r_positive= rand()% r_tested+1;
     temp->house.positive=r_positive;
-
-    //Assign random under 20
-    int under20 = rand()% r_size;
-    temp->house.houseinfo->un20=under20;
-
-
-
-
 
 
 
@@ -162,6 +178,14 @@ void printHousehold(struct household h) {
     printf("Number of people tested: $%.2d\n",h.tested);
 
     printf("Covid positive cases: %d\n",h.positive);
+
+    printf("Number of people under the age of 20: %d\n",h.un20);
+
+    printf("Number of people between the ages of 20-50\n: %d",h.bt2050);
+
+    printf("Number of people above the age of 50: %d\n",h.abv50);
+
+
 
 }////End of print function
 
