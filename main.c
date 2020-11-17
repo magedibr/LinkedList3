@@ -185,7 +185,7 @@ int main() {
 
                 printf("Enter family income: ");
 
-                scanf("%f",&h1.yearly_income);
+                scanf("%f",&h1.h_Size);
 
                 add(&head,h1);
 

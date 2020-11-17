@@ -39,7 +39,7 @@ struct node *randomNode() {
 
     struct node *temp = (struct node *)malloc(sizeof(struct node));
 
-    //Random town/region/race generation
+    //Random town~region~race generation
     int town_ind = rand() % 6;
     int region_ind = town_ind / 2;
     int race_ind = rand() % 5;
@@ -74,6 +74,9 @@ struct node *randomNode() {
 
 } //// End of random household generation function
 
+
+
+////Add random household to list
 void addRandom(struct node **head) {
 
     printf("Insert call");
@@ -96,7 +99,10 @@ void addRandom(struct node **head) {
 
     temp->next = new_node;
 
-}
+}///// End of add function
+
+
+
 
 void add(struct node **head,struct household house) {
 
@@ -130,6 +136,7 @@ void add(struct node **head,struct household house) {
 
 }
 
+////Print function
 void printHousehold(struct household h) {
 
     printf("\nRegion : %s\n",h.region);
@@ -140,9 +147,11 @@ void printHousehold(struct household h) {
 
     printf("Number of people in the household: %d\n",h.h_Size);
 
-    printf("Household yearly income: $%.2f\n",h.yearly_income);
+    printf("Number of people tested: $%.2d\n",h.tested);
 
-}
+    printf("Covid positive cases: %d\n",h.positive);
+
+}////End of print function
 
 void displayRegion(struct node *head, const char *region) {
 
@@ -302,7 +311,7 @@ void displayBelowFamilyIncome(struct node *head, float ub) {
 
     while(temp != NULL) {
 
-        if(temp->house.yearly_income < ub) {
+        if(temp->house.h_Size < ub) {
 
             if(idx == 0) {
 
@@ -336,7 +345,7 @@ void displayAboveFamilyIncome(struct node *head, float lb) {
 
     while(temp != NULL) {
 
-        if(temp->house.yearly_income >= lb) {
+        if(temp->house.h_Size >= lb) {
 
             if(idx == 0) {
 
@@ -434,7 +443,7 @@ void displayRegionandFamilyIncome(struct node *head, const char *region, float u
 
     while(temp != NULL) {
 
-        if(strcmp(temp->house.region,region)==0 && temp->house.yearly_income <= ub) {
+        if(strcmp(temp->house.region,region)==0 && temp->house.h_Size <= ub) {
 
             if(idx == 0) {
 
