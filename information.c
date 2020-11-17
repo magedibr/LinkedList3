@@ -722,7 +722,7 @@ void getRank(struct node *head){
 
     int reg_D=0,reg_P=0,reg_Y=0;
 
-    int twn_Osh=0,twn_Whi=0,twn_brmp=0,twn_Miss=0,twn_Map=0,ten_Va=0;
+    int twn_Osh=0,twn_Whi=0,twn_brmp=0,twn_Miss=0,twn_Map=0,twn_Va=0;
 
     static const char *regions[] = {"Peel","York","Dorm"};
     static const char *towns[] = {"Brampton","Mississauga","Maple","Vaughan","Whitby","Oshawa"};
@@ -732,8 +732,15 @@ void getRank(struct node *head){
 
         if(strcmp(temp->house.region,"Peel")==0)reg_P++;
         if(strcmp(temp->house.region,"York")==0)reg_Y++;
-        if(strcmp(temp->house.region,"Dorm")==0)reg_P++;
+        if(strcmp(temp->house.region,"Dorm")==0)reg_D++;
 
+
+        if(strcmp(temp->house.region,"Brampton")==0)twn_brmp++;
+        if(strcmp(temp->house.region,"Mississauga")==0)twn_Miss++;
+        if(strcmp(temp->house.region,"Maple")==0)twn_Map++;
+        if(strcmp(temp->house.region,"Vaughan")==0)twn_Va++;
+        if(strcmp(temp->house.region,"Whitby")==0)twn_Whi++;
+        if(strcmp(temp->house.region,"Oshawa")==0)twn_Osh++;
 
         temp=temp->next;
 
