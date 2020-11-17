@@ -40,7 +40,7 @@ void displayTown(struct node *head, const char *town);
 void displayRace(struct node *head, const char *race);
 void displayFamilySize(struct node *head, int ub);
 void displayBelowFamilyIncome(struct node *head, float ub);
-void displayAboveFamilyIncome(struct node *head, float lb);
+void displayTestedAboveThresh(struct node *head, float lb);
 void displayRegionandTown(struct node *head, const char *region, const char *town);
 void displayRegionandFamilySize(struct node *head, const char *region, int ub);
 void displayRegionandFamilyIncome(struct node *head, const char *region, float ub);

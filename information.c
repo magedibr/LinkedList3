@@ -64,8 +64,8 @@ struct node *randomNode() {
     int r_tested = rand()% r_size+ 1;
     temp->house.tested=r_tested;
 
-    //Assign random posotivity rate
-    int r_positive= rand()% r_tested;
+    //Assign random positivity rate
+    int r_positive= rand()% r_tested+1;
     temp->house.positive=r_positive;
 
     temp->next = NULL;
@@ -337,39 +337,34 @@ void displayBelowFamilyIncome(struct node *head, float ub) {
 
 }
 
-void displayAboveFamilyIncome(struct node *head, float lb) {
+//function to show people tested above a certain level
+void displayTestedAboveThresh(struct node *head, float lb) {
 
     struct node *temp = head;
 
-    int idx = 0;
 
+    int v_Reg = getRegion();
+
+
+    printf("\nHouseholds with a min of %.2f people tested in region %s is ",lb,regions[v_Reg]);
     while(temp != NULL) {
 
-        if(temp->house.h_Size >= lb) {
 
-            if(idx == 0) {
-
-                printf("\nHouseholds with income greater than or equal to : $%.2f \n",lb);
-
-                printHousehold(temp->house);
-
-            }
-
-            else {
-
-                printHousehold(temp->house);
-
-            }
-
-            idx++;
-
-        }
+        if( strcmp(temp->house.region,regions[v_Reg])==0)
+           if (temp->house.tested >= (int)lb)
+               printHousehold(temp->house);
 
         temp = temp->next;
+        }
 
     }
 
-}
+
+
+
+
+
+
 
 void displayRegionandTown(struct node *head, const char *region, const char *town) {
 

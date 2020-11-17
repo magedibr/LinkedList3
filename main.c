@@ -117,11 +117,11 @@ int main() {
 
             case 6:
 
-                printf("Enter a lower bound on family income: ");
+                printf("Enter a lower bound on family income:////////\n");
 
-                scanf("%f",&fval1);
+                scanf(" %f",&fval1);
 
-                displayAboveFamilyIncome(head,fval1);
+                displayTestedAboveThresh(head,fval1);
 
                 break;
 
