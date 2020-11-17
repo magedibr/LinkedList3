@@ -57,6 +57,7 @@ int getTown();
 int getRace();
 int getTownInRegion(int regInd);
 
-
+void selectionSort(int arr[], int n);
+void swap(int *xp, int *yp);
 void getRank(struct node *head);
 #endif //ABDELRAHMANMOHAMEDASSIGN3_INFORMATION_H
