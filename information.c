@@ -713,3 +713,40 @@ int getTownInRegion(int regInd) {
     return 2 * regInd + (choice - 1);
 
 }
+
+
+void getRank(struct node *head){
+
+    struct node *temp = head;
+
+
+    int reg_D=0,reg_P=0,reg_Y=0;
+
+    int twn_Osh=0,twn_Whi=0,twn_brmp=0,twn_Miss=0,twn_Map=0,ten_Va=0;
+
+    static const char *regions[] = {"Peel","York","Dorm"};
+    static const char *towns[] = {"Brampton","Mississauga","Maple","Vaughan","Whitby","Oshawa"};
+
+
+    while(temp->next!=NULL){
+
+        if(strcmp(temp->house.region,"Peel")==0)reg_P++;
+        if(strcmp(temp->house.region,"York")==0)reg_Y++;
+        if(strcmp(temp->house.region,"Dorm")==0)reg_P++;
+
+
+        temp=temp->next;
+
+    }
+    printf("%d\n",reg_P);
+
+
+
+
+
+
+
+
+
+
+}

@@ -5,6 +5,7 @@
 #ifndef ABDELRAHMANMOHAMEDASSIGN3_INFORMATION_H
 #define ABDELRAHMANMOHAMEDASSIGN3_INFORMATION_H
 
+#define MAX_VAL 5
 static const char *regions[] = {"Peel","York","Dorm"};
 
 static const char *towns[] = {"Brampton","Mississauga","Maple","Vaughan","Whitby","Oshawa"};
@@ -55,4 +56,7 @@ int getRegion();
 int getTown();
 int getRace();
 int getTownInRegion(int regInd);
+
+
+void getRank(struct node *head);
 #endif //ABDELRAHMANMOHAMEDASSIGN3_INFORMATION_H

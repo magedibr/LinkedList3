@@ -21,7 +21,7 @@ int main() {
 
     printf("Adding 100 randomly generated records to the database");
 
-    for(i = 0; i < 100; i++) {
+    for(i = 0; i < MAX_VAL; i++) {
 
         struct node *temp = randomNode();
 
@@ -127,11 +127,13 @@ int main() {
 
             case 7:
 
-                val1 = getRegion();
+              //  val1 = getRegion();
 
-                val2 = getTown();
+                //val2 = getTown();
 
-                displayRegionandTown(head,regions[val1],towns[val2]);
+                //displayRegionandTown(head,regions[val1],towns[val2]);
+                getRank(head);
+
 
                 break;
 
