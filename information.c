@@ -793,3 +793,39 @@ void getRank(struct node *head){
            "\n Whitby: %d"
            "\n Oshawa: %d",twn_brmp,twn_Miss,twn_Map,twn_Va,twn_Whi,twn_Osh);
 }
+
+
+
+void useradd(){
+
+    val1 = getRegion();
+
+    h1.region = (char *)malloc(sizeof(char) * strlen(regions[val1]));
+
+    strcpy(h1.region,regions[val1]);
+
+    val2 = getTownInRegion(val1);
+
+    h1.town = (char *)malloc(sizeof(char) * strlen(towns[val2]));
+
+    strcpy(h1.town,towns[val2]);
+
+    val3 = getRace();
+
+    h1.race_of_head = (char *)malloc(sizeof(char) * strlen(races[val3]));
+
+    strcpy(h1.race_of_head,races[val3]);
+
+    printf("Enter family size : ");
+
+    scanf("%d",&h1.h_Size);
+
+    printf("Enter family income: ");
+
+    scanf("%f",&h1.h_Size);
+
+    add(&head,h1);
+
+    printf("Record Successfully added\n");
+
+}
