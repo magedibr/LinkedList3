@@ -73,9 +73,7 @@ struct node *randomNode() {
     int under20 = rand()% r_size;
     temp->house.un20=under20;
 
-
     int j = r_size-under20;  //20++
-
 
     int btw = rand()%j;
     temp->house.bt2050=btw;
@@ -91,9 +89,6 @@ struct node *randomNode() {
     //Assign random positivity rate
     int r_positive= rand()% r_tested+1;
     temp->house.positive=r_positive;
-
-
-
 
 
     temp->next = NULL;
@@ -382,7 +377,7 @@ void displayTestedAboveThresh(struct node *head, float lb) {
     int v_Reg = getRegion();
 
 
-    printf("\nHouseholds with a min of %.2f people tested in region %s is ",lb,regions[v_Reg]);
+    printf("\nHouseholds with a min of %.2f people tested in region %s :",lb,regions[v_Reg]);
     while(temp != NULL) {
 
 
@@ -543,21 +538,14 @@ void deleteRTR(struct node **head, const char* region, const char* town, const c
     struct node *prevNode = NULL;
 
     while(tracer != NULL) {
-
         if(strcmp(tracer->house.region,region)==0 && strcmp(tracer->house.town,town) == 0 && strcmp(tracer->house.race_of_head,race)==0) {
-
             if(tracer == *head) {
-
                 removeAtFront(head);
-
             }
 
             else if(tracer->next == NULL) {
-
                 removeAtEnd(&prevNode);
-
             }
-
             else {
 
                 removeAtMiddle(&prevNode,&tracer);

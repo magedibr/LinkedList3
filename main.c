@@ -10,7 +10,7 @@ int main() {
     struct node *head = NULL;
 
     int i, go = 1, choice, val1, val2, val3, val4;
-int r_Id;
+
     float fval1;
 
     struct household userHouse;
@@ -98,27 +98,7 @@ int r_Id;
 
             case 4:
 
-                printf("Enter a family size to lookup (1-6) : ");
-
-                scanf("%d",val1);
-
-                displayFamilySize(head,val1);
-
-                break;
-
-            case 5:
-
-                printf("Enter an upper bound on family income: ");
-
-                scanf("%f",&fval1);
-
-                displayBelowFamilyIncome(head,fval1);
-
-                break;
-
-            case 6:
-
-                printf("Enter a lower bound on family income:////////\n");
+                printf("Enter a min number of people tested \n");
 
                 scanf(" %f",&fval1);
 
@@ -126,15 +106,26 @@ int r_Id;
 
                 break;
 
+            case 5:
+
+                getRank(head);
+                break;
+
+            case 6:
+                userAdd(head,userHouse);
+                break;
+
             case 7:
 
-              //  val1 = getRegion();
+                val1 = getRegion();
 
-                //val2 = getTown();
+                val2 = getTown();
 
-                //displayRegionandTown(head,regions[val1],towns[val2]);
-                getRank(head);
+                val3 = getRace();
 
+                deleteRTR(&head,regions[val1],towns[val2],races[val3]);
+
+                printf("Records Deleted\n");
 
                 break;
 
@@ -164,22 +155,9 @@ int r_Id;
 
             case 10:
 
-             userAdd(head,userHouse);
-
-
-                break;
 
             case 11:
 
-                val1 = getRegion();
-
-                val2 = getTown();
-
-                val3 = getRace();
-
-                deleteRTR(&head,regions[val1],towns[val2],races[val3]);
-
-                printf("Records Deleted\n");
 
                 break;
 
