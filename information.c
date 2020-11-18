@@ -74,14 +74,14 @@ struct node *randomNode() {
     temp->house.un20=under20;
 
 
-        int j = r_size-under20;  //20++
+    int j = r_size-under20;  //20++
 
 
-        int btw = rand()%j;
-        temp->house.bt2050=btw;
+    int btw = rand()%j;
+    temp->house.bt2050=btw;
 
-        int abv = r_size-(under20+btw);
-        temp->house.abv50=abv;
+    int abv = r_size-(under20+btw);
+    temp->house.abv50=abv;
 
 
     //Assign random tested qty
@@ -796,7 +796,7 @@ void getRank(struct node *head){
 
 
 
-void validateSize()
+void validateSize(){}
 
 
 
@@ -808,7 +808,7 @@ void validateSize()
 
 void userAdd(struct node *head,struct household userHouse){
 
-     int r_Id = getRegion();
+    int r_Id = getRegion();
     userHouse.region = (char *)malloc(sizeof(char) * strlen(regions[r_Id]));
     strcpy(userHouse.region,regions[r_Id]);
 
@@ -823,37 +823,40 @@ void userAdd(struct node *head,struct household userHouse){
     strcpy(userHouse.race_of_head,races[rc_Id]);
 
 
-    printf("Enter family size :\n");
-    scanf("%d",&userHouse.h_Size);
 
-    printf("Enter number of people tested:\n");
-    scanf("%d",&userHouse.tested);
+    while(1) {
 
-    printf("Enter number of positive cases:\n");
-    scanf("%d",&userHouse.positive);
+        printf("Enter family size :\n");
+        scanf("%d", &userHouse.h_Size);
 
-    printf("Number of people below 20:\n");
-    scanf("%d",&userHouse.un20);
+       printf("Enter number of people tested:\n");
+       scanf("%d", &userHouse.tested);
 
-    printf("Enter number of people between the ages of 20-50:\n");
-    scanf("%d",&userHouse.bt2050);
+       printf("Enter number of positive cases:\n");
+       scanf("%d", &userHouse.positive);
 
-    printf("Enter number of people over 50:\n");
-    scanf("%d",&userHouse.abv50);
+        printf("Number of people below 20:\n");
+        scanf("%d", &userHouse.un20);
 
+        printf("Enter number of people between the ages of 20-50:\n");
+        scanf("%d", &userHouse.bt2050);
 
-    int validate=userHouse.un20+userHouse.bt2050+userHouse.abv50;
+        printf("Enter number of people over 50:\n");
+        scanf("%d", &userHouse.abv50);
 
-    if(validate>userHouse.h_Size){
-        puts("Sum of people in the household can not be above the number of people above and below 50!");
-        userAdd(head,userHouse);}
+        int validate=userHouse.un20+userHouse.bt2050+userHouse.abv50;
 
+        if(validate<=userHouse.h_Size) {break;}
+        else
+        {
+            printf("%d\n",validate);
 
+            puts("Sum of people in the household can not be above the number of people above and below 50!");}
 
-        printHousehold(userHouse);
+    }
+
+    printHousehold(userHouse);
 
     add(&head,userHouse);
-
-
 }
 
