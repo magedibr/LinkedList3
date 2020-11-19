@@ -427,7 +427,7 @@ dex++;
         temp = temp->next;
 
     }
-
+    puts("Please restart program to read file contents:");
     fclose(fp);
 
 }
@@ -464,7 +464,7 @@ int getRegion() {
 
         if (scanf("%d", &choice) == 1 && (choice > 0 && choice < 4)) { return choice-1; }
         else {
-            printf("Invalid data. You should enter one integer in the range 0 through 3 or enter 0 to exit Try again\n");
+            printf("Invalid data. You should enter one integer in the range 1 through 3 or enter 0 to exit. Try again.\n");
             purgeData();
             getRegion();
         }
@@ -477,21 +477,22 @@ int getTown() {
 
     int choice;
 
-    do {
+    while(1) {
 
         printf("Pick a town:\n");
 
         printf("1.Brampton 2.Mississauga 3.Maple 4.Vaughan 5.Whitby 6.Oshawa\n");
 
-        scanf("%d",&choice);
+        if (scanf("%d", &choice) == 1 && (choice > 0 && choice < 7)) { return choice-1; }
+        else {
+            printf("Invalid data. You should enter one integer in the range 1 through 6 or enter 0 to exit. Try again.\n");
+            purgeData();
+            getTown();
+        }
 
-        if(choice < 1 || choice > 6)
+    }
 
-            printf("Invalid town pick!\n");
 
-    } while(choice < 1 || choice > 6);
-
-    return choice-1;
 
 }
 
@@ -499,11 +500,23 @@ int getRace() {
 
     int choice;
 
-    do {
-
+    while(1) {
         printf("Pick a Race:\n");
 
         printf("1.Caucasian 2.Indigenous 3.African 4.American 5.Asian 6.Other\n");
+
+
+        if (scanf("%d", &choice) == 1 && (choice > 0 && choice < 7)) { return choice-1; }
+        else {
+            printf("Invalid data. You should enter one integer in the range 1 through 6 or enter 0 to exit Try again\n");
+            purgeData();
+            getRace();
+        }
+
+    }
+    /*
+    do {
+
 
         scanf("%d",&choice);
 
@@ -514,7 +527,7 @@ int getRace() {
     } while(choice < 1 || choice > 6);
 
     return choice-1;
-
+*/
 }
 
 int getTownInRegion(int regInd) {
