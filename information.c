@@ -505,29 +505,13 @@ int getRace() {
 
         printf("1.Caucasian 2.Indigenous 3.African 4.American 5.Asian 6.Other\n");
 
-
         if (scanf("%d", &choice) == 1 && (choice > 0 && choice < 7)) { return choice-1; }
         else {
             printf("Invalid data. You should enter one integer in the range 1 through 6 or enter 0 to exit Try again\n");
             purgeData();
             getRace();
         }
-
     }
-    /*
-    do {
-
-
-        scanf("%d",&choice);
-
-        if(choice < 1 || choice > 6)
-
-            printf("Invalid race pick!\n");
-
-    } while(choice < 1 || choice > 6);
-
-    return choice-1;
-*/
 }
 
 int getTownInRegion(int regInd) {
@@ -537,7 +521,6 @@ int getTownInRegion(int regInd) {
     printf("Pick a town: \n");
 
     do {
-
         printf("1. %s 2. %s",regions[2*regInd],regions[2*regInd+1]);
 
         scanf("%d",&choice);
