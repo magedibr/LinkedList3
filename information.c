@@ -500,7 +500,7 @@ void deleteRTR(struct node **head, const char* region, const char* town, const c
 
 void writeToFile(struct node **head, const char* filename) {
 
-    FILE *fp = fopen(filename,"w");
+    FILE *fp = fopen("filename.txt","w+");
 
     if(fp == NULL) {
 
@@ -511,10 +511,11 @@ void writeToFile(struct node **head, const char* filename) {
     }
 
     struct node *temp = *head;
-
+int dex =0;
     while(temp != NULL) {
+dex++;
 
-        fwrite(&temp->house,sizeof(struct household),1,fp);
+            fprintf (fp,temp->house.region );
 
         temp = temp->next;
 
@@ -526,25 +527,16 @@ void writeToFile(struct node **head, const char* filename) {
 
 void readFromFile(struct node **head, const char* filename) {
 
-    FILE *fp = fopen(filename,"r");
 
-    if(fp == NULL) {
-
-        printf("\nFile Couldn't be opened");
-
-        return;
-
+    int c;
+    FILE *file;
+    file = fopen("filename.txt", "r");
+    if (file) {
+        while ((c = getc(file)) != EOF)
+            putchar(c);
+        fclose(file);
     }
 
-    struct household house;
-
-    while(fread(&house,sizeof(struct household),1,fp)) {
-
-        add(head,house);
-
-    }
-
-    printf("\nDatabase Loaded from file");
 
 }
 

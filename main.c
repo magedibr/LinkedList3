@@ -125,15 +125,7 @@ int main() {
 
                 break;
 
-                val1 = getRegion();
 
-                printf("Enter a family size to lookup (1-6) : ");
-
-                scanf("%d",val2);
-
-                displayRegionandFamilySize(head,regions[val1],val2);
-
-                break;
 
             case 9:
                 printf("Enter filename to write to : \n");
@@ -145,15 +137,7 @@ int main() {
                 printf("Data writtten to file successfully");
 
                 break;
-                val1 = getRegion();
 
-                printf("Enter an upper bound on family income: ");
-
-                scanf("%f",&fval1);
-
-                displayRegionandFamilyIncome(head,regions[val1],fval1);
-
-                break;
 
             case 10:
                 head = NULL;
