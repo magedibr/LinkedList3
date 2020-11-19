@@ -300,73 +300,7 @@ void displayRace(struct node *head, const char *race) {
 
 }
 
-void displayFamilySize(struct node *head, int ub) {
 
-    struct node *temp = head;
-
-    int idx = 0;
-
-    while(temp != NULL) {
-
-        if(temp->house.h_Size <= ub) {
-
-            if(idx == 0) {
-
-                printf("\nHouseholds with atmost : %d family members\n",ub);
-
-                printHousehold(temp->house);
-
-            }
-
-            else {
-
-                printHousehold(temp->house);
-
-            }
-
-            idx++;
-
-        }
-
-        temp = temp->next;
-
-    }
-
-}
-
-void displayBelowFamilyIncome(struct node *head, float ub) {
-
-    struct node *temp = head;
-
-    int idx = 0;
-
-    while(temp != NULL) {
-
-        if(temp->house.h_Size < ub) {
-
-            if(idx == 0) {
-
-                printf("\nHouseholds with income less than : $%.2f \n",ub);
-
-                printHousehold(temp->house);
-
-            }
-
-            else {
-
-                printHousehold(temp->house);
-
-            }
-
-            idx++;
-
-        }
-
-        temp = temp->next;
-
-    }
-
-}
 
 //function to show people tested above a certain level
 void displayTestedAboveThresh(struct node *head, float lb) {
@@ -562,43 +496,7 @@ void deleteRTR(struct node **head, const char* region, const char* town, const c
 
 }
 
-void deleteRTF(struct node **head, const char* region, const char* town, int family_size) {
 
-    struct node *tracer = *head;
-
-    struct node *prevNode = NULL;
-
-    while(tracer != NULL) {
-
-        if(strcmp(tracer->house.region,region)==0 && strcmp(tracer->house.town,town) == 0 && tracer->house.h_Size == family_size) {
-
-            if(tracer == *head) {
-
-                removeAtFront(head);
-
-            }
-
-            else if(tracer->next == NULL) {
-
-                removeAtEnd(&prevNode);
-
-            }
-
-            else {
-
-                removeAtMiddle(&prevNode,&tracer);
-
-            }
-
-        }
-
-        prevNode = tracer;
-
-        tracer = tracer->next;
-
-    }
-
-}
 
 void writeToFile(struct node **head, const char* filename) {
 

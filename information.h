@@ -43,17 +43,16 @@ void displayRegion(struct node *head, const char *region);
 void displayAll(struct node *head);
 void displayTown(struct node *head, const char *town);
 void displayRace(struct node *head, const char *race);
-void displayFamilySize(struct node *head, int ub);
-void displayBelowFamilyIncome(struct node *head, float ub);
+
 void displayTestedAboveThresh(struct node *head, float lb);
-void displayRegionandTown(struct node *head, const char *region, const char *town);
+
 void displayRegionandFamilySize(struct node *head, const char *region, int ub);
 void displayRegionandFamilyIncome(struct node *head, const char *region, float ub);
 void removeAtFront(struct node **head);
 void removeAtMiddle(struct node** prevNode, struct node **currNode);
 void removeAtEnd(struct node **prevNode);
 void deleteRTR(struct node **head, const char* region, const char* town, const char* race);
-void deleteRTF(struct node **head, const char* region, const char* town, int family_size);
+
 void writeToFile(struct node **head, const char* filename);
 void readFromFile(struct node **head, const char* filename);
 int getRegion();

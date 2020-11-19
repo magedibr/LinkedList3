@@ -36,35 +36,26 @@ int main() {
 
         printf("**************************\n");
 
-        printf("1. Display records of a Region\n");
+        printf("1. Display households of a Region\n");
 
-        printf("2. Display records of a Town\n");
+        printf("2. Display households of a Town\n");
 
-        printf("3. Display records of a Race\n");
+        printf("3. Display households of a Race\n");
 
-        printf("4. Display records of upto family size\n");
+        printf("4. display households of a region with a given minimum number of people tested positive for Covid-19\n");
 
-        printf("5. Display records of for family income less than x\n");
+        printf("5. display the regions town-wise ranking of number of people tested positive for Covid-19\n");
 
-        printf("6. Display records of for family income greater than equal to x\n");
+        printf("6. add a record\n");
 
-        printf("7. Display records of a Region-Town Pair\n");
+        printf("7. delete all records of a region, town and race triplet\n");
 
-        printf("8. Display records of a Region-Family size Pair\n");
+        printf("8. display updated data\n");
 
-        printf("9. Display records of a Region-Max Income Pair\n");
+        printf("9. store data to a file\n");
 
-        printf("10. Add a new record\n");
+        printf("10. display data from file\n");
 
-        printf("11. Delete Records for Region, Town, and Race triplet\n");
-
-        printf("12. Delete Records for Region, Town and Family size triplet\n");
-
-        printf("13. Show all records\n");
-
-        printf("14. Save database to file\n");
-
-        printf("15. Load data from file\n");
 
         printf("Enter your choice: ");
 
@@ -130,6 +121,9 @@ int main() {
                 break;
 
             case 8:
+                displayAll(head);
+
+                break;
 
                 val1 = getRegion();
 
@@ -142,7 +136,15 @@ int main() {
                 break;
 
             case 9:
+                printf("Enter filename to write to : \n");
 
+                scanf("%s",filename);
+
+                writeToFile(&head,filename);
+
+                printf("Data writtten to file successfully");
+
+                break;
                 val1 = getRegion();
 
                 printf("Enter an upper bound on family income: ");
@@ -154,49 +156,6 @@ int main() {
                 break;
 
             case 10:
-
-
-            case 11:
-
-
-                break;
-
-            case 12:
-
-                val1 = getRegion();
-
-                val2 = getTown();
-
-                printf("Enter family size: ");
-
-                scanf("%d",&val3);
-
-                deleteRTF(&head,regions[val1],towns[val2],val3);
-
-                printf("Records Deleted\n");
-
-                break;
-
-            case 13:
-
-                displayAll(head);
-
-                break;
-
-            case 14:
-
-                printf("Enter filename to write to : \n");
-
-                scanf("%s",filename);
-
-                writeToFile(&head,filename);
-
-                printf("Data writtten to file successfully");
-
-                break;
-
-            case 15:
-
                 head = NULL;
 
                 printf("Enter filename to read from : \n");
@@ -209,11 +168,13 @@ int main() {
 
                 break;
 
-            case 16:
 
-                go = 0;
 
-                break;
+            case 0:
+
+                exit(1);
+
+                
 
             default:
 
