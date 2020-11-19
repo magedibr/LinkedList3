@@ -33,6 +33,8 @@ struct node * newNode(struct household house) {
 
     temp->house.abv50=house.abv50;
 
+    temp->house.chronDu50=house.chronDu50;
+
     temp->next = NULL;
 
     return temp;
@@ -90,6 +92,10 @@ struct node *randomNode() {
     int r_positive= rand()% r_tested+1;
     temp->house.positive=r_positive;
 
+    //random U50 chronic D
+
+    int r_U50ch = rand()%(under20+btw);
+    temp->house.chronDu50=r_U50ch;
 
     temp->next = NULL;
 
@@ -328,105 +334,6 @@ void displayTestedAboveThresh(struct node *head, float lb) {
 
 
 
-
-
-
-void displayRegionandTown(struct node *head, const char *region, const char *town) {
-
-    struct node *temp = head;
-
-    int idx = 0;
-
-    while(temp != NULL) {
-
-        if(strcmp(temp->house.region,region)==0 && strcmp(temp->house.town,town)==0) {
-
-            if(idx == 0) {
-
-                printf("\nHouseholds of Region and Town: %s, %s respectively\n",region,town);
-
-                printHousehold(temp->house);
-
-            }
-
-            else {
-
-                printHousehold(temp->house);
-
-            }
-
-        }
-
-        temp = temp->next;
-
-    }
-
-}
-
-void displayRegionandFamilySize(struct node *head, const char *region, int ub) {
-
-    struct node *temp = head;
-
-    int idx = 0;
-
-    while(temp != NULL) {
-
-        if(strcmp(temp->house.region,region)==0 && temp->house.h_Size <= ub) {
-
-            if(idx == 0) {
-
-                printf("\nHouseholds of Region : %s, and at most %d family members\n",region,ub);
-
-                printHousehold(temp->house);
-
-            }
-
-            else {
-
-                printHousehold(temp->house);
-
-            }
-
-        }
-
-        temp = temp->next;
-
-    }
-
-}
-
-void displayRegionandFamilyIncome(struct node *head, const char *region, float ub) {
-
-    struct node *temp = head;
-
-    int idx = 0;
-
-    while(temp != NULL) {
-
-        if(strcmp(temp->house.region,region)==0 && temp->house.h_Size <= ub) {
-
-            if(idx == 0) {
-
-                printf("\nHouseholds of Region : %s, and at most $%.2f yearly income\n",region,ub);
-
-                printHousehold(temp->house);
-
-            }
-
-            else {
-
-                printHousehold(temp->house);
-
-            }
-
-        }
-
-        temp = temp->next;
-
-    }
-
-}
-
 void removeAtFront(struct node **head) {
 
     if(*head == NULL) {
@@ -539,26 +446,30 @@ void readFromFile(struct node **head, const char* filename) {
 
 
 }
+//Function to be able to clear data after user entry. Used in while loops to allow user to reenter data until validation occurs.
+void purgeData() {
+    int delete;
+    while ((delete = getchar()) != '\n' && delete != EOF)
+    {}
+}
 
 int getRegion() {
 
     int choice;
 
-    do {
-
+    while(1) {
         printf("Pick a Region:\n");
 
-        printf("1.Peel 2.York 3.Dorm\n");
+        printf("1.Peel 2.York 3.Durham\n");
 
-        scanf("%d",&choice);
+        if (scanf("%d", &choice) == 1 && (choice > 0 && choice < 4)) { return choice-1; }
+        else {
+            printf("Invalid data. You should enter one integer in the range 0 through 3 or enter 0 to exit Try again\n");
+            purgeData();
+            getRegion();
+        }
 
-        if(choice < 1 || choice > 3)
-
-            printf("Invalid region pick!\n");
-
-    } while(choice < 1 || choice > 3);
-
-    return choice-1;
+    }
 
 }
 
@@ -638,14 +549,14 @@ void getRank(struct node *head){
 
     int twn_Osh=0,twn_Whi=0,twn_brmp=0,twn_Miss=0,twn_Map=0,twn_Va=0;
 
-    static const char *regions[] = {"Peel","York","Dorm"};
+    static const char *regions[] = {"Peel","York","Durham"};
     static const char *towns[] = {"Brampton","Mississauga","Maple","Vaughan","Whitby","Oshawa"};
 
     while(temp->next!=NULL){
 
         if(strcmp(temp->house.region,"Peel")==0)reg_P+=temp->house.tested;
         if(strcmp(temp->house.region,"York")==0)reg_Y+=temp->house.tested;
-        if(strcmp(temp->house.region,"Dorm")==0)reg_D+=temp->house.tested;
+        if(strcmp(temp->house.region,"Durham")==0)reg_D+=temp->house.tested;
 
         if(strcmp(temp->house.town,"Brampton")==0)twn_brmp+=temp->house.tested;
         if(strcmp(temp->house.town,"Mississauga")==0)twn_Miss+=temp->house.tested;
@@ -674,14 +585,6 @@ void getRank(struct node *head){
 
 
 
-void validateSize(){}
-
-
-
-
-
-
-
 
 
 void userAdd(struct node *head,struct household userHouse){
@@ -701,7 +604,7 @@ void userAdd(struct node *head,struct household userHouse){
     strcpy(userHouse.race_of_head,races[rc_Id]);
 
 
-
+int val_flag=1;
     while(1) {
 
         printf("Enter family size :\n");
@@ -718,6 +621,9 @@ void userAdd(struct node *head,struct household userHouse){
 
         printf("Enter number of people between the ages of 20-50:\n");
         scanf("%d", &userHouse.bt2050);
+
+        printf("Enter number of people below 50 with chronic dis, separated by tabs. Please make sure these are valid integers");
+       // scanf((""))
 
         printf("Enter number of people over 50:\n");
         scanf("%d", &userHouse.abv50);
@@ -737,4 +643,24 @@ void userAdd(struct node *head,struct household userHouse){
 
     add(&head,userHouse);
 }
+/*
+void validatenums(int *ptr) {
+    char buffer[11];
+    int ctr;
+    int Positivesize;
+    int Positiveincome;
 
+
+    printf("Enter number of people below 50 with chronic dis, seprated by tabs. Please make sure these are valid integers");
+    fgets(buffer, sizeof(buffer), stdin);
+    ctr = sscanf(buffer, " %d" );
+
+    if (ctr != 2 || Positiveincome % 100 != 0 || Positiveincome < 1 || Positivesize < 1) {
+        printf("Invalid data. Enter two positive integers separated by space/tab, first one for size of the family and second one for total annual income. Try again\n");
+
+        validateFamilyAndIncome((int*) ptr);
+    }else {
+        ptr[0] = Positivesize;
+        ptr[1] = Positiveincome;
+    }*/
+//}

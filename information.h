@@ -6,7 +6,9 @@
 #define ABDELRAHMANMOHAMEDASSIGN3_INFORMATION_H
 
 #define MAX_VAL 5
-static const char *regions[] = {"Peel","York","Dorm"};
+
+//
+static const char *regions[] = {"Peel","York","Durham"};
 
 static const char *towns[] = {"Brampton","Mississauga","Maple","Vaughan","Whitby","Oshawa"};
 
@@ -23,11 +25,9 @@ struct household {
     int un20;
     int bt2050;
     int abv50;
-    //int chronDu50;
+    int chronDu50;
 
 };
-
-
 
 struct node {
     struct household house;
@@ -38,7 +38,9 @@ struct node * newNode(struct household house);
 struct node *randomNode();
 void addRandom(struct node **head);
 void add(struct node **head,struct household house);
+
 void printHousehold(struct household h);
+
 void displayRegion(struct node *head, const char *region);
 void displayAll(struct node *head);
 void displayTown(struct node *head, const char *town);
@@ -46,8 +48,7 @@ void displayRace(struct node *head, const char *race);
 
 void displayTestedAboveThresh(struct node *head, float lb);
 
-void displayRegionandFamilySize(struct node *head, const char *region, int ub);
-void displayRegionandFamilyIncome(struct node *head, const char *region, float ub);
+void purgeData();
 void removeAtFront(struct node **head);
 void removeAtMiddle(struct node** prevNode, struct node **currNode);
 void removeAtEnd(struct node **prevNode);
@@ -55,6 +56,7 @@ void deleteRTR(struct node **head, const char* region, const char* town, const c
 
 void writeToFile(struct node **head, const char* filename);
 void readFromFile(struct node **head, const char* filename);
+
 int getRegion();
 int getTown();
 int getRace();

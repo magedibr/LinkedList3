@@ -149,16 +149,12 @@ int main() {
                 readFromFile(&head,filename);
 
                 printf("Data loaded from file file successfully");
-
+go=0;
                 break;
 
 
 
-            case 0:
 
-                exit(1);
-
-                
 
             default:
 
