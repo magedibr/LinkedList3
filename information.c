@@ -615,9 +615,9 @@ int val_flag=1;
         printf("Number of people below 20:\n");
         scanf("%d", &userHouse.un20);
 
-        printf("Enter number of people between the ages of 20-50:\n");
+      /*  printf("Enter number of people between the ages of 20-50:\n");
         scanf("%d", &userHouse.bt2050);
-
+*/
         printf("Enter number of people below 50 with chronic dis, separated by tabs. Please make sure these are valid integers");
        // scanf((""))
 
