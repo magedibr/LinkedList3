@@ -418,11 +418,11 @@ void writeToFile(struct node **head, const char* filename) {
     }
 
     struct node *temp = *head;
-int dex =0;
+    int dex =0;
     while(temp != NULL) {
-dex++;
+        dex++;
 
-            fprintf (fp,temp->house.region );
+        fprintf (fp,temp->house.region );
 
         temp = temp->next;
 
@@ -600,63 +600,135 @@ void userAdd(struct node *head,struct household userHouse){
     strcpy(userHouse.race_of_head,races[rc_Id]);
 
 
-int val_flag=1;
+    int val=0,val1=0,val2=0,val3=0,val4=0,val5=0;
+
+    int val_flag=1;
     while(1) {
+//Family size validation
+        while(1) {
+            printf("Enter family size :\n");
+            int ctr=  scanf("%d", &userHouse.h_Size);
 
-        printf("Enter family size :\n");
-        scanf("%d", &userHouse.h_Size);
 
-       printf("Enter number of people tested:\n");
-       scanf("%d", &userHouse.tested);
+            if ( userHouse.h_Size> 10 || userHouse.h_Size <= 0 ||ctr !=1 ){
+                puts("Size must between 1-10, please try again.");
+                purgeData();}
 
-       printf("Enter number of positive cases:\n");
-       scanf("%d", &userHouse.positive);
+            else{
+                val1=1;
+                break;}
+        }
+//End of family size validation
 
-        printf("Number of people below 20:\n");
-        scanf("%d", &userHouse.un20);
+//Number of people tested validation
+        while(val1) {
+            printf("Enter number of people tested:\n");
 
-      /*  printf("Enter number of people between the ages of 20-50:\n");
-        scanf("%d", &userHouse.bt2050);
-*/
-        printf("Enter number of people below 50 with chronic dis, separated by tabs. Please make sure these are valid integers");
-       // scanf((""))
+            int ctr2=  scanf("%d", &userHouse.tested);
 
-        printf("Enter number of people over 50:\n");
-        scanf("%d", &userHouse.abv50);
+            if(userHouse.tested<0|| userHouse.tested>userHouse.h_Size||ctr2!=1){
 
-        int validate=userHouse.un20+userHouse.bt2050+userHouse.abv50;
+                printf("Amount of people tested must be less than or equal to %d and the it must be a positive integer, please try again.\n",userHouse.tested) ;
+                purgeData();}
+            else { val2=1;
+                break;
 
-        if(validate<=userHouse.h_Size) {break;}
-        else
-        {
-            printf("%d\n",validate);
+            }
+        }
+//End of number of people tested validation
 
-            puts("Sum of people in the household can not be above the number of people above and below 50!");}
+//positive cases validation
 
+        while(val2) {
+
+            printf("Enter number of positive cases:\n");
+            int ctr3= scanf("%d", &userHouse.positive);
+
+            if(userHouse.positive<0||userHouse.positive>userHouse.h_Size||userHouse.positive>userHouse.tested ||ctr3!=1){
+                printf("Amount of positive cases can not be greater then the amount of"
+                       "tested members( %d ) or larger than %d and  must be a real positive integer, please try again.\n",userHouse.tested,userHouse.h_Size);
+                purgeData();}
+            else{
+                val3=1;
+                break;}
+        }
+//End of positive cases validation
+
+//U20 validation
+        while(val3){
+
+            printf("Number of people below 20:\n");
+
+            int ctr4 = scanf("%d", &userHouse.un20);
+
+            if(userHouse.un20<0||userHouse.un20>userHouse.h_Size||ctr4!=1){
+                printf("People under 20 can not be more than %d and must be a real positive integer, please try again.\n",userHouse.h_Size);
+                purgeData();
+            }
+            else{
+                val4=1;
+                break;
+
+            }
+
+        }
+//End of u20 validation
+
+        while (val4){
+
+            printf("Please Enter the amount of people above 50\n");
+
+            int ctr6= scanf("%d",&userHouse.abv50);
+
+            if(ctr6!=1||userHouse.abv50>(userHouse.h_Size-userHouse.un20)){
+                puts("Number can not be larger then the amount of people under 50 and must be a valid positive integer, please try again.\n");
+                purgeData();
+
+            }else {
+                purgeData();
+                val5=1;
+                break;
+            }
+
+        }
+//chron U50 validation
+
+
+        while(val5){
+
+            int buff[5];
+            int p1=0,p2=0,p3=0,p4=0,p5=0;
+            int btw= userHouse.un20+userHouse.bt2050;
+
+
+            printf("Enter number of people below 50 with chronic dis, separated by tabs. Please make sure these are valid integers(Maximum of 5 entries)");
+
+            fgets(buff,sizeof(buff),stdin);
+            int ctr5 = sscanf(buff,"%d%d%d%d%d",&p1,&p2,&p3,&p4,&p5);
+            int totalPe = p1+p2+p3+p4+p5;
+
+            if( !(ctr5>0 && ctr5<6) ||totalPe>btw){
+
+                printf("btw 20: %d  u20: %d\n",userHouse.bt2050,userHouse.un20 );
+                printf("Btween var %d",btw);
+                printf("user entry %d\n",totalPe);
+
+
+                printf("The number of people can not exceed the total of people under 50");
+                purgeData();
+            }else {
+                userHouse.chronDu50=totalPe;
+
+                break;
+            }
+
+        }
+//end of chron50 validation
+        break;
+        }
+
+
+        printHousehold(userHouse);
+
+        add(&head,userHouse);
     }
-
-    printHousehold(userHouse);
-
-    add(&head,userHouse);
-}
-/*
-void validatenums(int *ptr) {
-    char buffer[11];
-    int ctr;
-    int Positivesize;
-    int Positiveincome;
-
-
-    printf("Enter number of people below 50 with chronic dis, seprated by tabs. Please make sure these are valid integers");
-    fgets(buffer, sizeof(buffer), stdin);
-    ctr = sscanf(buffer, " %d" );
-
-    if (ctr != 2 || Positiveincome % 100 != 0 || Positiveincome < 1 || Positivesize < 1) {
-        printf("Invalid data. Enter two positive integers separated by space/tab, first one for size of the family and second one for total annual income. Try again\n");
-
-        validateFamilyAndIncome((int*) ptr);
-    }else {
-        ptr[0] = Positivesize;
-        ptr[1] = Positiveincome;
-    }*/
-//}
