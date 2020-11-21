@@ -9,7 +9,7 @@ int main() {
 
     struct node *head = NULL;
 
-    int i, go = 1, choice, val1, val2, val3, val4;
+    int go = 1, choice, val1, val2, val3;
 
     int fval1;
 
@@ -19,15 +19,12 @@ int main() {
 
     srand(time(NULL));
 
-    printf("Adding 100 randomly generated records to the database");
+    create(&head,&userHouse);
 
-    for(i = 0; i < 2; i++) {
 
-        struct node *temp = randomNode();
 
-        addRandom(&head);
 
-    }
+
 
     //turn into a func that accepts head as a parameter?
     while(go) {
@@ -56,7 +53,7 @@ int main() {
 
         printf("10. display data from file\n");
 
-        printf("0. Exit");
+        printf("0. Exit\n");
 
 
 
@@ -112,7 +109,7 @@ int main() {
                 break;
 
             case 6:
-       //      userHouse.bt2050=0;
+                userHouse.bt2050=0;
                 userAdd(head,userHouse);
                 break;
 

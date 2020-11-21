@@ -34,6 +34,8 @@ struct node {
     struct node *next;
 };
 
+void create(struct node **head,struct household *h1);
+
 struct node * newNode(struct household house);
 struct node *randomNode();
 void addRandom(struct node **head);

@@ -5,6 +5,26 @@
 #include "information.h"
 
 
+void create(struct node *head,struct household *h1){
+
+    printf("Adding 100 randomly generated records to the database");
+
+    int i =0;
+    for(i = 0; i < 5; i++) {
+        puts("asd");
+        printf("%d",i);
+        addRandom(&head);
+
+
+
+
+      //  printHousehold(head->house);
+    }
+}
+
+
+
+
 struct node * newNode(struct household house) {
 
     struct node *temp = (struct node *)malloc(sizeof(struct node));
@@ -45,7 +65,7 @@ struct node * newNode(struct household house) {
 
 //Generate random household
 struct node *randomNode() {
-
+    srand(time(NULL));
     struct node *temp = (struct node *)malloc(sizeof(struct node));
 
     //Random town~region~race generation
@@ -122,12 +142,12 @@ void addRandom(struct node **head) {
 
     struct node *temp = *head;
 
-    while(temp->next != NULL)
+    while(temp->next != NULL) {
 
         temp = temp->next;
 
-    temp->next = new_node;
-
+        temp->next = new_node;
+    }
 }///// End of add function
 
 
@@ -322,7 +342,7 @@ void displayTestedAboveThresh(struct node *head, int lb) {
 
 
         if( strcmp(temp->house.region,regions[v_Reg])==0)
-            if (temp->house.tested >= (int)lb)
+            if (temp->house.tested >= lb)
                 printHousehold(temp->house);
 
         temp = temp->next;
