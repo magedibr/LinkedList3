@@ -453,6 +453,9 @@ void purgeData() {
     {}
 }
 
+
+
+//Beging of get region function
 int getRegion() {
 
     int choice;
@@ -472,6 +475,7 @@ int getRegion() {
     }
 
 }
+//End of getRegion function
 
 int getTown() {
 
@@ -514,26 +518,7 @@ int getRace() {
     }
 }
 
-int getTownInRegion(int regInd) {
 
-    int choice;
-
-    printf("Pick a town: \n");
-
-    do {
-        printf("1. %s 2. %s",regions[2*regInd],regions[2*regInd+1]);
-
-        scanf("%d",&choice);
-
-        if(choice < 1 || choice > 2)
-
-            printf("\nInvalid town pick!\n");
-
-    } while(choice < 1 || choice > 2);
-
-    return 2 * regInd + (choice - 1);
-
-}
 
 
 void getRank(struct node *head){
@@ -590,7 +575,7 @@ void userAdd(struct node *head,struct household userHouse){
     strcpy(userHouse.region,regions[r_Id]);
 
 
-    int tr_Id = getTownInRegion(r_Id);
+    int tr_Id = getTown();
     userHouse.town = (char *)malloc(sizeof(char) * strlen(towns[tr_Id]));
     strcpy(userHouse.town,towns[tr_Id]);
 
@@ -600,7 +585,7 @@ void userAdd(struct node *head,struct household userHouse){
     strcpy(userHouse.race_of_head,races[rc_Id]);
 
 
-    int val=0,val1=0,val2=0,val3=0,val4=0,val5=0;
+    int val1=0,val2=0,val3=0,val4=0,val5=0;
 
     int val_flag=1;
     while(1) {
@@ -628,7 +613,7 @@ void userAdd(struct node *head,struct household userHouse){
 
             if(userHouse.tested<0|| userHouse.tested>userHouse.h_Size||ctr2!=1){
 
-                printf("Amount of people tested must be less than or equal to %d and the it must be a positive integer, please try again.\n",userHouse.tested) ;
+                printf("Amount of people tested must be less than or equal to %d and the it must be a positive integer, please try again.\n",userHouse.h_Size) ;
                 purgeData();}
             else { val2=1;
                 break;
@@ -696,10 +681,9 @@ void userAdd(struct node *head,struct household userHouse){
 
         while(val5){
 
-            int buff[5];
+            char buff[5];
             int p1=0,p2=0,p3=0,p4=0,p5=0;
             int btw= userHouse.un20+userHouse.bt2050;
-
 
             printf("Enter number of people below 50 with chronic dis, separated by tabs. Please make sure these are valid integers(Maximum of 5 entries)");
 
@@ -709,25 +693,16 @@ void userAdd(struct node *head,struct household userHouse){
 
             if( !(ctr5>0 && ctr5<6) ||totalPe>btw){
 
-                printf("btw 20: %d  u20: %d\n",userHouse.bt2050,userHouse.un20 );
-                printf("Btween var %d",btw);
-                printf("user entry %d\n",totalPe);
-
-
-                printf("The number of people can not exceed the total of people under 50");
+              printf("The number of people can not exceed the total of people under 50");
                 purgeData();
             }else {
                 userHouse.chronDu50=totalPe;
-
                 break;
             }
-
         }
 //end of chron50 validation
         break;
         }
-
-
         printHousehold(userHouse);
 
         add(&head,userHouse);

@@ -60,7 +60,7 @@ void readFromFile(struct node **head, const char* filename);
 int getRegion();
 int getTown();
 int getRace();
-int getTownInRegion(int regInd);
+
 
 void userAdd(struct  node *head,struct household userHouse);
 void getRank(struct node *head);

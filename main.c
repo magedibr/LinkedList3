@@ -56,10 +56,19 @@ int main() {
 
         printf("10. display data from file\n");
 
+        printf("0. Exit");
 
-        printf("Enter your choice: ");
 
-        scanf("%d",&choice);
+
+        while(1) {
+            printf("Enter your choice: ");
+            int ctr= scanf("%d",&choice);
+
+            if(ctr!=1){ puts("Please enter a valid number");
+            purgeData();}
+            else break;
+        }
+
 
         switch(choice) {
 
@@ -91,7 +100,7 @@ int main() {
 
                 printf("Enter a min number of people tested \n");
 
-                scanf(" %f",&fval1);
+                scanf("%f",&fval1);
 
                 displayTestedAboveThresh(head,fval1);
 
@@ -103,6 +112,7 @@ int main() {
                 break;
 
             case 6:
+       //      userHouse.bt2050=0;
                 userAdd(head,userHouse);
                 break;
 
@@ -149,12 +159,11 @@ int main() {
                 readFromFile(&head,filename);
 
                 printf("Data loaded from file file successfully");
-go=0;
+                go=0;
                 break;
 
-
-
-
+            case 0:
+                break;
 
             default:
 
