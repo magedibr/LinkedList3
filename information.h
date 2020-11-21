@@ -46,7 +46,7 @@ void displayAll(struct node *head);
 void displayTown(struct node *head, const char *town);
 void displayRace(struct node *head, const char *race);
 
-void displayTestedAboveThresh(struct node *head, float lb);
+void displayTestedAboveThresh(struct node *head, int lb);
 
 void purgeData();
 void removeAtFront(struct node **head);

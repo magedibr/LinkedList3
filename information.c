@@ -309,7 +309,7 @@ void displayRace(struct node *head, const char *race) {
 
 
 //function to show people tested above a certain level
-void displayTestedAboveThresh(struct node *head, float lb) {
+void displayTestedAboveThresh(struct node *head, int lb) {
 
     struct node *temp = head;
 
@@ -317,7 +317,7 @@ void displayTestedAboveThresh(struct node *head, float lb) {
     int v_Reg = getRegion();
 
 
-    printf("\nHouseholds with a min of %.2f people tested in region %s :",lb,regions[v_Reg]);
+    printf("\nHouseholds with a min of %.2d people tested in region %s :",lb,regions[v_Reg]);
     while(temp != NULL) {
 
 
@@ -422,7 +422,7 @@ void writeToFile(struct node **head, const char* filename) {
     while(temp != NULL) {
         dex++;
 
-        fprintf (fp,temp->house.region );
+        fprintf (fp,"%s", temp->house.region );
 
         temp = temp->next;
 

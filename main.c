@@ -11,7 +11,7 @@ int main() {
 
     int i, go = 1, choice, val1, val2, val3, val4;
 
-    float fval1;
+    int fval1;
 
     struct household userHouse;
 
@@ -21,7 +21,7 @@ int main() {
 
     printf("Adding 100 randomly generated records to the database");
 
-    for(i = 0; i < MAX_VAL; i++) {
+    for(i = 0; i < 2; i++) {
 
         struct node *temp = randomNode();
 
@@ -100,7 +100,7 @@ int main() {
 
                 printf("Enter a min number of people tested \n");
 
-                scanf("%f",&fval1);
+                scanf("%d",&fval1);
 
                 displayTestedAboveThresh(head,fval1);
 
