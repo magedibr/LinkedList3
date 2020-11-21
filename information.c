@@ -123,7 +123,7 @@ struct node *randomNode() {
 
 } //// End of random household generation function
 
-
+//head->next->n
 
 ////Add random household to list
 void addRandom(struct node **head) {
