@@ -10,7 +10,7 @@ int main() {
 
     int go = 1, choice, val1, val2, val3;
 
-    int fval1;
+    int minTest;
 
     struct household userHouse;
 
@@ -21,7 +21,6 @@ int main() {
  create(&head);
 
 
-    //turn into a func that accepts head as a parameter?
     while(go) {
 
         printf("\n\n***Population Info Menu***\n");
@@ -92,9 +91,9 @@ int main() {
 
                 printf("Enter a min number of people tested \n");
 
-                scanf("%d",&fval1);
+                scanf("%d",&minTest);
 
-                displayTestedAboveThresh(head,fval1);
+                displayTestedAboveThresh(head,minTest);
 
                 break;
 

@@ -70,6 +70,7 @@ struct node *randomNode() {
     int l =0;
     l++;
     printf("%d DIFF NODES",l);
+
     //Random town~region~race generation
     int town_ind = rand() % 6;
     int region_ind = town_ind / 2;
@@ -325,7 +326,9 @@ void displayTestedAboveThresh(struct node *head, int lb) {
     int v_Reg = getRegion();
 
 
-    printf("\nHouseholds with a min of %.2d people tested in region %s :",lb,regions[v_Reg]);
+    printf("\nHouseholds with a min of %.2d people tested in region %s :\n\n",lb,regions[v_Reg]);
+
+    printf("%10s%10s%15s%20s%15s%15s\n","S.Num","Size","Total tested","Race","Region" ,"Town");
     while(temp != NULL) {
 
 
@@ -340,7 +343,7 @@ void displayTestedAboveThresh(struct node *head, int lb) {
 
 
 
-
+//Functions used for delete operations
 
 void removeAtFront(struct node **head) {
 
