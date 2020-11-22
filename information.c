@@ -7,21 +7,21 @@
 #include <time.h>
 #include "information.h"
 
+////Function to generate Random households
 void create(struct node **head){
 
-
     int i =0;
+
     for(i = 0; i < MAX_VAL; i++) {
 
         addRandom(head);
+
     }
 
-    printf("%d many records inserted\n",i);
-}
+    printf("%d many records inserted",i);
+}////End of create function
 
-
-
-
+////New node creation
 struct node * newNode(struct household house) {
 
     struct node *temp = (struct node *)malloc(sizeof(struct node));
@@ -56,7 +56,7 @@ struct node * newNode(struct household house) {
 
     return temp;
 
-}
+}////End of new node function
 
 
 /////Generate random household
@@ -64,7 +64,7 @@ struct node *randomNode() {
 
     struct node *temp = (struct node *)malloc(sizeof(struct node));
 
-    //Random town~region~race generation
+    //Random (town/region/race) generation
     int town_ind = rand() % 6;
     int region_ind = town_ind / 2;
     int race_ind = rand() % 5;
@@ -186,6 +186,7 @@ void printHousehold(struct household h) {
     printf("%20d%20d%25d%25s%25s%20s\n",(i+=1),h.h_Size,h.tested,h.race,h.region,h.town);
 
 }////End of print function
+
 
 
 ////Function to display region
@@ -333,7 +334,7 @@ void displayTestedAboveThresh(struct node *head, int min) {
 
 
 
-////Begging of delete functions
+////Functions used to find and delete specific nodes
 
 void frontDelete(struct node **head) {
 
@@ -351,9 +352,9 @@ void frontDelete(struct node **head) {
 
 }
 
-void deleteBtwn(struct node** prevNode, struct node **currNode) {
+void deleteBtwn(struct node** prevNode, struct node **thisNode) {
 
-    struct node *nextNode = (*currNode)->next;
+    struct node *nextNode = (*thisNode)->next;
 
     (*prevNode)->next = nextNode;
 
@@ -394,9 +395,8 @@ void deleteTriplet(struct node **head, const char* region, const char* town, con
 
     }
 
-}
+}////End of delete functions
 
-////End of delete functions
 
 ////Function to write data to a text file
 void textOutput(struct node **head) {
@@ -418,7 +418,6 @@ void textOutput(struct node **head) {
 
     while(temp != NULL) {
         dex++;
-
 
         fprintf (fp,"%20d%20d%25d%25s%25s%20s\n", dex,temp->house.h_Size,temp->house.tested,temp->house.race,temp->house.region,temp->house.town);
         temp = temp->next;
@@ -530,8 +529,6 @@ void getRank(struct node *head){
 
     int twn_Osh=0,twn_Whi=0,twn_brmp=0,twn_Miss=0,twn_Map=0,twn_Va=0;
 
-    static const char *regions[] = {"Peel","York","Durham"};
-    static const char *towns[] = {"Brampton","Mississauga","Maple","Vaughan","Whitby","Oshawa"};
 
     while(temp->next!=NULL){
 

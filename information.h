@@ -42,7 +42,7 @@ void addRandom(struct node **head);
 void add(struct node **head,struct household house);
 void purgeData();
 void frontDelete(struct node **head);
-void deleteBtwn(struct node** prevNode, struct node **currNode);
+void deleteBtwn(struct node** prevNode, struct node **thisNode);
 void deleteTail(struct node **prevNode);
 void deleteTriplet(struct node **head, const char* region, const char* town, const char* race);
 void userAdd(struct  node *head,struct household userHouse);

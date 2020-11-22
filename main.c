@@ -27,30 +27,30 @@ int main() {
 
     while(on) {
 
-        printf("\n\n*********************** Population Info Menu ***********************\n\n");
+        printf("\n\n*********************** Population Info Menu ***********************\n");
 
 
-        printf("1. Display households of a Region\n");
+        printf("1.  Display households of a Region\n");
 
-        printf("2. Display households of a Town\n");
+        printf("2.  Display households of a Town\n");
 
-        printf("3. Display households of a Race\n");
+        printf("3.  Display households of a Race\n");
 
-        printf("4. Display households of a region with a given minimum number of people tested positive for Covid-19\n");
+        printf("4.  Display households of a region with a given minimum number of people tested positive for Covid-19\n");
 
-        printf("5. Display the regions town-wise ranking of number of people tested positive for Covid-19\n");
+        printf("5.  Display the regions town-wise ranking of number of people tested positive for Covid-19\n");
 
-        printf("6. Add a record\n");
+        printf("6.  Add a record\n");
 
-        printf("7. Delete all records of a region, town and race triplet\n");
+        printf("7.  Delete all records of a region, town and race triplet\n");
 
-        printf("8. Display all/updated data\n");
+        printf("8.  Display all/updated data\n");
 
-        printf("9. Store data to a file\n");
+        printf("9.  Store data to a file\n");
 
         printf("10. Display data from file\n");
 
-        printf("0. Exit\n");
+        printf("0.  Exit\n");
 
 
         //Loop to check that input is an int
