@@ -34,7 +34,7 @@ struct node {
 };
 
 
-//Node manipulation functions
+// Node manipulation functions
 void create(struct node **head);
 struct node * newNode(struct household house);
 struct node *randomNode();
@@ -47,7 +47,7 @@ void deleteTail(struct node **prevNode);
 void deleteTriplet(struct node **head, const char* region, const char* town, const char* race);
 void userAdd(struct  node *head,struct household userHouse);
 
-//Print functions
+// Print functions
 void printHousehold(struct household h);
 void showRegion(struct node *head, const char *region);
 void showAll(struct node *head);
@@ -59,11 +59,10 @@ void displayTestedAboveThresh(struct node *head, int lb);
 void textOutput(struct node **head);
 void textInput();
 
-//Data retrieval
+// Data retrieval
 int getRegion();
 int getTown();
 int getRace();
-
 void getRank(struct node *head);
 
 #endif //ABDELRAHMANMOHAMEDASSIGN3_INFORMATION_H
