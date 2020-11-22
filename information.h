@@ -1,6 +1,6 @@
 //Create by: Abdelrahman Mohamed
-//Date:16/10/2020
-//Function implementations
+//Date:21/11/2020
+//Function prototypes
 
 #ifndef ABDELRAHMANMOHAMEDASSIGN3_INFORMATION_H
 #define ABDELRAHMANMOHAMEDASSIGN3_INFORMATION_H

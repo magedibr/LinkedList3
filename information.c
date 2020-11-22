@@ -1,11 +1,11 @@
+//Create by: Abdelrahman Mohamed
+//Date:21/11/2020
+//Function implementations
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include "information.h"
-//Create by: Abdelrahman Mohamed
-//Date:16/10/2020
-//Function implementations
 
 void create(struct node **head){
 

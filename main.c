@@ -1,10 +1,12 @@
+//Create by: Abdelrahman Mohamed
+//Date:21/11/2020
+//Main method
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include "information.h"
-//Create by: Abdelrahman Mohamed
-//Date:16/10/2020
-//Function implementations
+
 
 int main() {
 
