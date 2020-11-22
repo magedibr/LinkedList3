@@ -193,13 +193,13 @@ void showRegion(struct node *head, const char *region) {
 
     struct node *temp = head;
 
-    int idx = 0;
+    int dex = 0;
 
     while(temp != NULL) {
 
         if(strcmp(temp->house.region,region)==0) {
 
-            if(idx == 0) {
+            if(dex == 0) {
 
                 printf("\nHouseholds of Region: %s\n",region);
 
@@ -217,7 +217,7 @@ void showRegion(struct node *head, const char *region) {
 
         temp = temp->next;
 
-        idx++;
+        dex++;
 
     }
 
@@ -245,13 +245,13 @@ void displayTown(struct node *head, const char *town) {
 
     struct node *temp = head;
 
-    int idx = 0;
+    int dex = 0;
 
     while(temp != NULL) {
 
         if(strcmp(temp->house.town,town)==0) {
 
-            if(idx == 0) {
+            if(dex == 0) {
 
                 printf("\nHouseholds of Town: %s\n",town);
                 printHousehold(temp->house);
@@ -262,7 +262,7 @@ void displayTown(struct node *head, const char *town) {
                 printHousehold(temp->house);
 
             }
-            idx++;
+            dex++;
         }
 
         temp = temp->next;
@@ -271,17 +271,19 @@ void displayTown(struct node *head, const char *town) {
 
 }////End of town display
 
+
+////Function to show race
 void displayRace(struct node *head, const char *race) {
 
     struct node *temp = head;
 
-    int idx = 0;
+    int dex = 0;
 
     while(temp != NULL) {
 
         if(strcmp(temp->house.race,race)==0) {
 
-            if(idx == 0) {
+            if(dex == 0) {
 
                 printf("\nHouseholds with heads of Race: %s\n",race);
 
@@ -295,7 +297,7 @@ void displayRace(struct node *head, const char *race) {
 
             }
 
-            idx++;
+            dex++;
 
         }
 
@@ -303,11 +305,11 @@ void displayRace(struct node *head, const char *race) {
 
     }
 
-}
+}////End of Race function
 
 
 
-//function to show people tested above a certain level
+////function to show people tested above a certain level
 void displayTestedAboveThresh(struct node *head, int min) {
 
     struct node *temp = head;
@@ -316,7 +318,7 @@ void displayTestedAboveThresh(struct node *head, int min) {
 
     printf("\nHouseholds with a min of %d people tested in region %s :\n\n",min,regions[v_Reg]);
 
-    printf("%20s%20s%25s%25s%25s%20s\n","S.Num","Size","Total tested","Race","Region" ,"Town");
+    printf("%20s%20s%25s%25s%25s%20s\n\n","S.Num","Size","Total tested","Race","Region" ,"Town");
     while(temp != NULL) {
 
 
@@ -336,9 +338,7 @@ void displayTestedAboveThresh(struct node *head, int min) {
 void frontDelete(struct node **head) {
 
     if(*head == NULL) {
-
         printf("\nerror\n");
-
         return;
 
     }
@@ -413,10 +413,13 @@ void textOutput(struct node **head) {
 
     struct node *temp = *head;
     int dex =0;
+    fprintf(fp,"%20s%20s%25s%25s%25s%20s\n\n","S.Num","Size","Total tested","Race","Region" ,"Town");
+
+
     while(temp != NULL) {
         dex++;
 
-        printf("%20s%20s%25s%25s%25s%20s\n\n","S.Num","Size","Total tested","Race","Region" ,"Town");
+
         fprintf (fp,"%20d%20d%25d%25s%25s%20s\n", dex,temp->house.h_Size,temp->house.tested,temp->house.race,temp->house.region,temp->house.town);
         temp = temp->next;
     }
@@ -582,7 +585,7 @@ void userAdd(struct node *head,struct household userHouse){
     strcpy(userHouse.race,races[rc_Id]);
 
 
-    int val1=0,val2=0,val3=0,val4=0,val5=0;
+    int v1=0,v2=0,v3=0,val4=0,val5=0;
 
     while(1) {
         ////Family size validation
@@ -596,13 +599,13 @@ void userAdd(struct node *head,struct household userHouse){
                 purgeData();}
 
             else{
-                val1=1;
+                v1=1;
                 break;}
         }
         //////End of family size validation
 
         ////Number of people tested validation
-        while(val1) {
+        while(v1) {
             printf("Enter number of people tested:\n");
 
             int ctr2=  scanf("%d", &userHouse.tested);
@@ -611,7 +614,7 @@ void userAdd(struct node *head,struct household userHouse){
 
                 printf("Amount of people tested must be less than or equal to %d and the it must be a positive integer, please try again.\n",userHouse.h_Size) ;
                 purgeData();}
-            else { val2=1;
+            else { v2=1;
                 break;
 
             }
@@ -620,7 +623,7 @@ void userAdd(struct node *head,struct household userHouse){
 
         ////positive cases validation
 
-        while(val2) {
+        while(v2) {
 
             printf("Enter number of positive cases:\n");
             int ctr3= scanf("%d", &userHouse.positive);
@@ -631,13 +634,13 @@ void userAdd(struct node *head,struct household userHouse){
                        "positive integer, please try again.\n",userHouse.tested,userHouse.h_Size);
                 purgeData();}
             else{
-                val3=1;
+                v3=1;
                 break;}
         }
         ////End of positive cases validation
 
         ////U20 validation
-        while(val3){
+        while(v3){
 
             printf("Number of people below 20:\n");
 

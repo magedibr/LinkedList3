@@ -10,7 +10,7 @@ int main() {
 
     struct node *head = NULL;
 
-    int on = 1, choice, val1, val2, val3;
+    int on = 1, choice, v1, v2, v3;
 
     int minTest;
 
@@ -19,8 +19,8 @@ int main() {
 
     srand(time(NULL));
 
-
- create(&head);
+    //Random record generation
+    create(&head);
 
 
     while(on) {
@@ -51,13 +51,13 @@ int main() {
         printf("0. Exit\n");
 
 
-
+        //Loop to check that input is an int
         while(1) {
             printf("Enter your choice: ");
             int ctr= scanf("%d",&choice);
 
             if(ctr!=1){ puts("Please enter a valid number");
-            purgeData();}
+                purgeData();}
             else break;
         }
 
@@ -66,25 +66,25 @@ int main() {
 
             case 1:
 
-                val1 = getRegion();
+                v1 = getRegion();
 
-                showRegion(head,regions[val1]);
+                showRegion(head,regions[v1]);
 
                 break;
 
             case 2:
 
-                val1 = getTown();
+                v1 = getTown();
 
-                displayTown(head,towns[val1]);
+                displayTown(head,towns[v1]);
 
                 break;
 
             case 3:
 
-                val1 = getRace();
+                v1 = getRace();
 
-                displayRace(head,races[val1]);
+                displayRace(head,races[v1]);
 
                 break;
 
@@ -110,13 +110,13 @@ int main() {
 
             case 7:
 
-                val1 = getRegion();
+                v1 = getRegion();
 
-                val2 = getTown();
+                v2 = getTown();
 
-                val3 = getRace();
+                v3 = getRace();
 
-                deleteTriplet(&head,regions[val1],towns[val2],races[val3]);
+                deleteTriplet(&head,regions[v1],towns[v2],races[v3]);
 
                 printf("Records Deleted\n");
 
@@ -143,7 +143,7 @@ int main() {
                 break;
 
             case 0:
-                    on=0;
+                on=0;
                 break;
 
             default:
