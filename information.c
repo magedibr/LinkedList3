@@ -58,13 +58,10 @@ struct node * newNode(struct household house) {
 }
 
 
-//Generate random household
+/////Generate random household
 struct node *randomNode() {
 
     struct node *temp = (struct node *)malloc(sizeof(struct node));
-    int l =0;
-    l++;
-    printf("%d DIFF NODES",l);
 
     //Random town~region~race generation
     int town_ind = rand() % 6;
@@ -88,14 +85,12 @@ struct node *randomNode() {
     int r_size = rand() % 10 + 1;
     temp->house.h_Size = r_size;
 
-
     //Assign random under 20
     int under20 = rand()% r_size;
      temp->house.un20=under20;
 
-    int j = r_size-under20;  //20++
-    int btw = rand()%j
-    ;
+    int j = r_size-under20;
+    int btw = rand()%j;
 
     temp->house.bt2050=btw;
 
@@ -126,10 +121,7 @@ struct node *randomNode() {
 
 
 ////Add random household to list
-
 void addRandom(struct node **head) {
-
-
 
     struct node *new_node = randomNode();
 
@@ -149,10 +141,10 @@ void addRandom(struct node **head) {
 
     temp->next = new_node;
 
-}
+}////End of addRandom function
 
 
-
+////Add node function
 void add(struct node **head,struct household house) {
 
     struct node *new = newNode(house);
@@ -162,13 +154,11 @@ void add(struct node **head,struct household house) {
         printf("\nTry again");
 
         return;
-
     }
 
     if(*head == NULL) {
 
         *head = new;
-
     }
 
     else {
@@ -183,11 +173,12 @@ void add(struct node **head,struct household house) {
 
     }
 
-}
+}////End of addNode function
+
 
 ////Print function
 void printHousehold(struct household h) {
-int i;
+static int i;
     for( i =0;i<MAX_VAL;i++);
 
         printf(" %10d%10d%15d%20s%15s%15s\n", (i),h.h_Size,h.tested,h.race_of_head,h.region,h.town);
@@ -501,8 +492,6 @@ int getTown() {
         }
 
     }
-
-
 
 }
 
