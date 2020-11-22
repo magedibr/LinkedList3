@@ -3,18 +3,20 @@
 #include <string.h>
 #include <time.h>
 #include "information.h"
-
+//Create by: Abdelrahman Mohamed
+//Date:16/10/2020
+//Function implementations
 
 void create(struct node **head){
 
-    printf("Adding 100 randomly generated records to the database\n");
 
     int i =0;
-    for(i = 0; i < 5; i++) {
+    for(i = 0; i < MAX_VAL; i++) {
 
         addRandom(head);
     }
-        printf("%d many records inserted\n",i);
+
+    printf("%d many records inserted\n",i);
 }
 
 
@@ -24,9 +26,9 @@ struct node * newNode(struct household house) {
 
     struct node *temp = (struct node *)malloc(sizeof(struct node));
 
-    temp->house.race_of_head = (char *)malloc(sizeof(char) * strlen(house.race_of_head));
+    temp->house.race = (char *)malloc(sizeof(char) * strlen(house.race));
 
-    strcpy(temp->house.race_of_head,house.race_of_head);
+    strcpy(temp->house.race,house.race);
 
     temp->house.region = (char *)malloc(sizeof(char) * strlen(house.region));
 
@@ -68,8 +70,8 @@ struct node *randomNode() {
     int race_ind = rand() % 5;
 
     //Assign random race
-    temp->house.race_of_head = (char *)malloc(sizeof(char) * strlen(races[race_ind]));
-    strcpy(temp->house.race_of_head,races[race_ind]);
+    temp->house.race = (char *)malloc(sizeof(char) * strlen(races[race_ind]));
+    strcpy(temp->house.race,races[race_ind]);
 
     //Assign random region
     temp->house.region = (char *)malloc(sizeof(char) * strlen(regions[region_ind]));
@@ -86,7 +88,7 @@ struct node *randomNode() {
 
     //Assign random under 20
     int under20 = rand()% r_size;
-     temp->house.un20=under20;
+    temp->house.un20=under20;
 
     int j = r_size-under20;
     int btw = rand()%j;
@@ -95,7 +97,6 @@ struct node *randomNode() {
 
     int abv = r_size-(under20+btw);
     temp->house.abv50=abv;
-
 
     //Assign random tested qty
     int r_tested = rand()% r_size+ 1;
@@ -114,8 +115,8 @@ struct node *randomNode() {
 
     return temp;
 
-}
- //// End of random household generation function
+}//// End of random household generation function
+
 
 
 
@@ -141,6 +142,8 @@ void addRandom(struct node **head) {
     temp->next = new_node;
 
 }////End of addRandom function
+
+
 
 
 ////Add node function
@@ -180,15 +183,13 @@ void printHousehold(struct household h) {
 
     static int i=0;
 
-
-        printf(" %20d%20d%20d%20s%20s%20s\n",(i+=1),h.h_Size,h.tested,h.race_of_head,h.region,h.town);
-
+    printf("%20d%20d%25d%25s%25s%20s\n",(i+=1),h.h_Size,h.tested,h.race,h.region,h.town);
 
 }////End of print function
 
 
 ////Function to display region
-void displayRegion(struct node *head, const char *region) {
+void showRegion(struct node *head, const char *region) {
 
     struct node *temp = head;
 
@@ -223,8 +224,8 @@ void displayRegion(struct node *head, const char *region) {
 }////End of region display function
 
 
-////Funtion to print all records
-void displayAll(struct node *head) {
+////Function to print all records
+void showAll(struct node *head) {
 
     struct node *temp = head;
 
@@ -278,7 +279,7 @@ void displayRace(struct node *head, const char *race) {
 
     while(temp != NULL) {
 
-        if(strcmp(temp->house.race_of_head,race)==0) {
+        if(strcmp(temp->house.race,race)==0) {
 
             if(idx == 0) {
 
@@ -307,22 +308,20 @@ void displayRace(struct node *head, const char *race) {
 
 
 //function to show people tested above a certain level
-void displayTestedAboveThresh(struct node *head, int lb) {
+void displayTestedAboveThresh(struct node *head, int min) {
 
     struct node *temp = head;
 
-
     int v_Reg = getRegion();
 
+    printf("\nHouseholds with a min of %d people tested in region %s :\n\n",min,regions[v_Reg]);
 
-    printf("\nHouseholds with a min of %.2d people tested in region %s :\n\n",lb,regions[v_Reg]);
-
-    printf("%10s%10s%15s%20s%15s%15s\n","S.Num","Size","Total tested","Race","Region" ,"Town");
+    printf("%20s%20s%25s%25s%25s%20s\n","S.Num","Size","Total tested","Race","Region" ,"Town");
     while(temp != NULL) {
 
 
         if( strcmp(temp->house.region,regions[v_Reg])==0)
-            if (temp->house.tested >= lb)
+            if (temp->house.tested >= min)
                 printHousehold(temp->house);
 
         temp = temp->next;
@@ -332,9 +331,9 @@ void displayTestedAboveThresh(struct node *head, int lb) {
 
 
 
-//Functions used for delete operations
+////Begging of delete functions
 
-void removeAtFront(struct node **head) {
+void frontDelete(struct node **head) {
 
     if(*head == NULL) {
 
@@ -352,7 +351,7 @@ void removeAtFront(struct node **head) {
 
 }
 
-void removeAtMiddle(struct node** prevNode, struct node **currNode) {
+void deleteBtwn(struct node** prevNode, struct node **currNode) {
 
     struct node *nextNode = (*currNode)->next;
 
@@ -360,52 +359,47 @@ void removeAtMiddle(struct node** prevNode, struct node **currNode) {
 
 }
 
-void removeAtEnd(struct node **prevNode) {
+void deleteTail(struct node **prevNode) {
 
-    struct node *tracer = *prevNode;
-
-   // struct node *temp = tracer->next;
-
-    tracer->next = NULL;
-
-    free(tracer);
+    struct node *current = *prevNode;
+    current->next = NULL;
+    free(current);
 
 }
 
-void deleteRTR(struct node **head, const char* region, const char* town, const char* race) {
+void deleteTriplet(struct node **head, const char* region, const char* town, const char* race) {
 
-    struct node *tracer = *head;
+    struct node *current = *head;
 
     struct node *prevNode = NULL;
 
-    while(tracer != NULL) {
-        if(strcmp(tracer->house.region,region)==0 && strcmp(tracer->house.town,town) == 0 && strcmp(tracer->house.race_of_head,race)==0) {
-            if(tracer == *head) {
-                removeAtFront(head);
+    while(current != NULL) {
+        if(strcmp(current->house.region,region)==0 && strcmp(current->house.town,town) == 0 && strcmp(current->house.race,race)==0) {
+            if(current == *head) {
+                frontDelete(head);
             }
 
-            else if(tracer->next == NULL) {
-                removeAtEnd(&prevNode);
+            else if(current->next == NULL) {
+                deleteTail(&prevNode);
             }
             else {
 
-                removeAtMiddle(&prevNode,&tracer);
+                deleteBtwn(&prevNode,&current);
 
             }
-
         }
 
-        prevNode = tracer;
-
-        tracer = tracer->next;
+        prevNode = current;
+        current = current->next;
 
     }
 
 }
 
+////End of delete functions
 
-
-void writeToFile(struct node **head) {
+////Function to write data to a text file
+void textOutput(struct node **head) {
 
     FILE *fp = fopen("houseinfo.txt","w+");
 
@@ -422,18 +416,19 @@ void writeToFile(struct node **head) {
     while(temp != NULL) {
         dex++;
 
-        fprintf (fp,"%s", temp->house.region );
+        printf("%20s%20s%25s%25s%25s%20s\n\n","S.Num","Size","Total tested","Race","Region" ,"Town");
+        fprintf (fp,"%20d%20d%25d%25s%25s%20s\n", dex,temp->house.h_Size,temp->house.tested,temp->house.race,temp->house.region,temp->house.town);
         temp = temp->next;
     }
 
     puts("Content saved to houseinfo.txt");
     fclose(fp);
 
-}
-
-void readFromFile(struct node **head) {
+}////End of text output function
 
 
+////Function to read from file
+void textInput() {
     int c;
     FILE *file;
     file = fopen("houseinfo.txt", "r");
@@ -443,18 +438,19 @@ void readFromFile(struct node **head) {
         fclose(file);
     }
 
+}////End of read function
 
-}
-//Function to be able to clear data after user entry. Used in while loops to allow user to reenter data until validation occurs.
+
+////Function to clear data
 void purgeData() {
     int delete;
     while ((delete = getchar()) != '\n' && delete != EOF)
     {}
-}
+}////End of clear data function
 
 
 
-//Beging of get region function
+////Beginning of get region function
 int getRegion() {
 
     int choice;
@@ -474,8 +470,11 @@ int getRegion() {
     }
 
 }
-//End of getRegion function
+////End of getRegion function
 
+
+
+////Begging of getTown function
 int getTown() {
 
     int choice;
@@ -495,7 +494,8 @@ int getTown() {
 
     }
 
-}
+}////End of town function
+
 
 int getRace() {
 
@@ -517,7 +517,7 @@ int getRace() {
 
 
 
-
+////Function to count rank of towns and cities
 void getRank(struct node *head){
 
     struct node *temp = head;
@@ -559,12 +559,12 @@ void getRank(struct node *head){
            "\n Vaughan: %d"
            "\n Whitby: %d"
            "\n Oshawa: %d",twn_brmp,twn_Miss,twn_Map,twn_Va,twn_Whi,twn_Osh);
-}
+}////End of get Rank function
 
 
 
 
-
+////Begging of userAdd function
 void userAdd(struct node *head,struct household userHouse){
 
     int r_Id = getRegion();
@@ -578,14 +578,14 @@ void userAdd(struct node *head,struct household userHouse){
 
 
     int rc_Id = getRace();
-    userHouse.race_of_head = (char *)malloc(sizeof(char) * strlen(races[rc_Id ]));
-    strcpy(userHouse.race_of_head,races[rc_Id]);
+    userHouse.race = (char *)malloc(sizeof(char) * strlen(races[rc_Id ]));
+    strcpy(userHouse.race,races[rc_Id]);
 
 
     int val1=0,val2=0,val3=0,val4=0,val5=0;
 
     while(1) {
-//Family size validation
+        ////Family size validation
         while(1) {
             printf("Enter family size :\n");
             int ctr=  scanf("%d", &userHouse.h_Size);
@@ -599,9 +599,9 @@ void userAdd(struct node *head,struct household userHouse){
                 val1=1;
                 break;}
         }
-//End of family size validation
+        //////End of family size validation
 
-////Number of people tested validation
+        ////Number of people tested validation
         while(val1) {
             printf("Enter number of people tested:\n");
 
@@ -616,9 +616,9 @@ void userAdd(struct node *head,struct household userHouse){
 
             }
         }
-////End of number of people tested validation
+        ////End of number of people tested validation
 
-////positive cases validation
+        ////positive cases validation
 
         while(val2) {
 
@@ -627,15 +627,16 @@ void userAdd(struct node *head,struct household userHouse){
 
             if(userHouse.positive<0||userHouse.positive>userHouse.h_Size||userHouse.positive>userHouse.tested ||ctr3!=1){
                 printf("Amount of positive cases can not be greater then the amount of"
-                       "tested members( %d ) or larger than %d and  must be a real positive integer, please try again.\n",userHouse.tested,userHouse.h_Size);
+                       "tested members( %d ) or larger than %d and  must be a real "
+                       "positive integer, please try again.\n",userHouse.tested,userHouse.h_Size);
                 purgeData();}
             else{
                 val3=1;
                 break;}
         }
-////End of positive cases validation
+        ////End of positive cases validation
 
-////U20 validation
+        ////U20 validation
         while(val3){
 
             printf("Number of people below 20:\n");
@@ -649,11 +650,9 @@ void userAdd(struct node *head,struct household userHouse){
             else{
                 val4=1;
                 break;
-
             }
-
         }
-////End of u20 validation
+        ////End of u20 validation
 
         while (val4){
 
@@ -672,8 +671,7 @@ void userAdd(struct node *head,struct household userHouse){
             }
 
         }
-/////chron U50 validation
-
+        /////chron U50 validation
 
         while(val5){
 
@@ -689,7 +687,7 @@ void userAdd(struct node *head,struct household userHouse){
 
             if( !(ctr5>0 && ctr5<6) ||totalPe>btw){
 
-              printf("The number of people can not exceed the total of people under 50");
+                printf("The number of people can not exceed the total of people under 50");
                 purgeData();
             }else {
                 userHouse.chronDu50=totalPe;
@@ -698,8 +696,8 @@ void userAdd(struct node *head,struct household userHouse){
         }
 ////end of chron50 validation
         break;
-        }
-        printHousehold(userHouse);
-
-        add(&head,userHouse);
     }
+    printHousehold(userHouse);
+
+    add(&head,userHouse);
+}////End of user add function

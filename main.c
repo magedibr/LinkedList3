@@ -2,7 +2,9 @@
 #include <stdlib.h>
 #include <time.h>
 #include "information.h"
-
+//Create by: Abdelrahman Mohamed
+//Date:16/10/2020
+//Function implementations
 
 int main() {
 
@@ -23,9 +25,8 @@ int main() {
 
     while(on) {
 
-        printf("\n\n***Population Info Menu***\n");
+        printf("\n\n*********************** Population Info Menu ***********************\n\n");
 
-        printf("**************************\n");
 
         printf("1. Display households of a Region\n");
 
@@ -33,19 +34,19 @@ int main() {
 
         printf("3. Display households of a Race\n");
 
-        printf("4. display households of a region with a given minimum number of people tested positive for Covid-19\n");
+        printf("4. Display households of a region with a given minimum number of people tested positive for Covid-19\n");
 
-        printf("5. display the regions town-wise ranking of number of people tested positive for Covid-19\n");
+        printf("5. Display the regions town-wise ranking of number of people tested positive for Covid-19\n");
 
-        printf("6. add a record\n");
+        printf("6. Add a record\n");
 
-        printf("7. delete all records of a region, town and race triplet\n");
+        printf("7. Delete all records of a region, town and race triplet\n");
 
-        printf("8. display updated data\n");
+        printf("8. Display all/updated data\n");
 
-        printf("9. store data to a file\n");
+        printf("9. Store data to a file\n");
 
-        printf("10. display data from file\n");
+        printf("10. Display data from file\n");
 
         printf("0. Exit\n");
 
@@ -67,7 +68,7 @@ int main() {
 
                 val1 = getRegion();
 
-                displayRegion(head,regions[val1]);
+                showRegion(head,regions[val1]);
 
                 break;
 
@@ -115,7 +116,7 @@ int main() {
 
                 val3 = getRace();
 
-                deleteRTR(&head,regions[val1],towns[val2],races[val3]);
+                deleteTriplet(&head,regions[val1],towns[val2],races[val3]);
 
                 printf("Records Deleted\n");
 
@@ -123,21 +124,21 @@ int main() {
 
             case 8:
 
-                printf("%20s%20s%20s%20s%20s%20s\n\n","S.Num","Size","Total tested","Race","Region" ,"Town");
-                displayAll(head);
+                printf("%20s%20s%25s%25s%25s%20s\n\n","S.Num","Size","Total tested","Race","Region" ,"Town");
+                showAll(head);
 
                 break;
 
             case 9:
 
-                writeToFile(&head);
+                textOutput(&head);
                 break;
 
 
             case 10:
                 head = NULL;
                 printf("File contents : \n");
-                readFromFile(&head);
+                textInput();
 
                 break;
 
