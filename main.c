@@ -122,7 +122,8 @@ int main() {
                 break;
 
             case 8:
-                printf("%10s%10s%15s%20s%15s%15s\n","S.Num","Size","Total tested","Race","Region" ,"Town");
+
+                printf("%20s%20s%20s%20s%20s%20s\n\n","S.Num","Size","Total tested","Race","Region" ,"Town");
                 displayAll(head);
 
                 break;

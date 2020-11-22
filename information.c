@@ -54,7 +54,6 @@ struct node * newNode(struct household house) {
 
     return temp;
 
-
 }
 
 
@@ -178,14 +177,17 @@ void add(struct node **head,struct household house) {
 
 ////Print function
 void printHousehold(struct household h) {
-static int i;
-    for( i =0;i<MAX_VAL;i++);
 
-        printf(" %10d%10d%15d%20s%15s%15s\n", (i),h.h_Size,h.tested,h.race_of_head,h.region,h.town);
+    static int i=0;
+
+
+        printf(" %20d%20d%20d%20s%20s%20s\n",(i+=1),h.h_Size,h.tested,h.race_of_head,h.region,h.town);
 
 
 }////End of print function
 
+
+////Function to display region
 void displayRegion(struct node *head, const char *region) {
 
     struct node *temp = head;
@@ -218,8 +220,10 @@ void displayRegion(struct node *head, const char *region) {
 
     }
 
-}
+}////End of region display function
 
+
+////Funtion to print all records
 void displayAll(struct node *head) {
 
     struct node *temp = head;
@@ -232,8 +236,10 @@ void displayAll(struct node *head) {
 
     }
 
-}
+}////End of all record print function
 
+
+////Function to display town
 void displayTown(struct node *head, const char *town) {
 
     struct node *temp = head;
@@ -247,9 +253,7 @@ void displayTown(struct node *head, const char *town) {
             if(idx == 0) {
 
                 printf("\nHouseholds of Town: %s\n",town);
-
                 printHousehold(temp->house);
-
             }
 
             else {
@@ -257,16 +261,14 @@ void displayTown(struct node *head, const char *town) {
                 printHousehold(temp->house);
 
             }
-
             idx++;
-
         }
 
         temp = temp->next;
 
     }
 
-}
+}////End of town display
 
 void displayRace(struct node *head, const char *race) {
 
@@ -336,7 +338,7 @@ void removeAtFront(struct node **head) {
 
     if(*head == NULL) {
 
-        printf("\nUnderflow");
+        printf("\nerror\n");
 
         return;
 
@@ -362,7 +364,7 @@ void removeAtEnd(struct node **prevNode) {
 
     struct node *tracer = *prevNode;
 
-    struct node *temp = tracer->next;
+   // struct node *temp = tracer->next;
 
     tracer->next = NULL;
 
@@ -502,11 +504,11 @@ int getRace() {
     while(1) {
         printf("Pick a Race:\n");
 
-        printf("1.Caucasian 2.Indigenous 3.African 4.American 5.Asian 6.Other\n");
+        printf("1.Caucasian 2.Indigenous 3.African American 5.Asian 6.Other\n");
 
         if (scanf("%d", &choice) == 1 && (choice > 0 && choice < 7)) { return choice-1; }
         else {
-            printf("Invalid data. You should enter one integer in the range 1 through 6 or enter 0 to exit Try again\n");
+            printf("Invalid data. You should enter one integer in the range 1 through 6. Try again\n");
             purgeData();
             getRace();
         }
@@ -582,7 +584,6 @@ void userAdd(struct node *head,struct household userHouse){
 
     int val1=0,val2=0,val3=0,val4=0,val5=0;
 
-    int val_flag=1;
     while(1) {
 //Family size validation
         while(1) {
@@ -600,7 +601,7 @@ void userAdd(struct node *head,struct household userHouse){
         }
 //End of family size validation
 
-//Number of people tested validation
+////Number of people tested validation
         while(val1) {
             printf("Enter number of people tested:\n");
 
@@ -615,9 +616,9 @@ void userAdd(struct node *head,struct household userHouse){
 
             }
         }
-//End of number of people tested validation
+////End of number of people tested validation
 
-//positive cases validation
+////positive cases validation
 
         while(val2) {
 
@@ -632,9 +633,9 @@ void userAdd(struct node *head,struct household userHouse){
                 val3=1;
                 break;}
         }
-//End of positive cases validation
+////End of positive cases validation
 
-//U20 validation
+////U20 validation
         while(val3){
 
             printf("Number of people below 20:\n");
@@ -652,7 +653,7 @@ void userAdd(struct node *head,struct household userHouse){
             }
 
         }
-//End of u20 validation
+////End of u20 validation
 
         while (val4){
 
@@ -671,7 +672,7 @@ void userAdd(struct node *head,struct household userHouse){
             }
 
         }
-//chron U50 validation
+/////chron U50 validation
 
 
         while(val5){
@@ -695,7 +696,7 @@ void userAdd(struct node *head,struct household userHouse){
                 break;
             }
         }
-//end of chron50 validation
+////end of chron50 validation
         break;
         }
         printHousehold(userHouse);
