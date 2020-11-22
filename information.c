@@ -5,7 +5,7 @@
 #include "information.h"
 
 
-void create(struct node *head,struct household *h1){
+void create(struct node **head){
 
     printf("Adding 100 randomly generated records to the database");
 
@@ -13,7 +13,7 @@ void create(struct node *head,struct household *h1){
     for(i = 0; i < 5; i++) {
         puts("asd");
         printf("%d",i);
-        addRandom(&head);
+        addRandom(head);
 
 
 
@@ -64,91 +64,12 @@ struct node * newNode(struct household house) {
 
 
 //Generate random household
-struct node *randomNode() {
-    srand(time(NULL));
-    struct node *temp = (struct node *)malloc(sizeof(struct node));
-
-    //Random town~region~race generation
-    int town_ind = rand() % 6;
-    int region_ind = town_ind / 2;
-    int race_ind = rand() % 5;
-
-    //Assign random race
-    temp->house.race_of_head = (char *)malloc(sizeof(char) * strlen(races[race_ind]));
-    strcpy(temp->house.race_of_head,races[race_ind]);
-
-    //Assign random region
-    temp->house.region = (char *)malloc(sizeof(char) * strlen(regions[region_ind]));
-    strcpy(temp->house.region,regions[region_ind]);
-
-    //Assign random town
-    temp->house.town = (char *)malloc(sizeof(char) * strlen(towns[town_ind]));
-    strcpy(temp->house.town,towns[town_ind]);
-
-    ///malloc needed?
-    //Assign random size from 1-10 members
-    int r_size = rand() % 10 + 1;
-    temp->house.h_Size = r_size;
-
-
-    //Assign random under 20
-    int under20 = rand()% r_size;
-    temp->house.un20=under20;
-
-    int j = r_size-under20;  //20++
-
-    int btw = rand()%j;
-    temp->house.bt2050=btw;
-
-    int abv = r_size-(under20+btw);
-    temp->house.abv50=abv;
-
-
-    //Assign random tested qty
-    int r_tested = rand()% r_size+ 1;
-    temp->house.tested=r_tested;
-
-    //Assign random positivity rate
-    int r_positive= rand()% r_tested+1;
-    temp->house.positive=r_positive;
-
-    //random U50 chronic D
-
-    int r_U50ch = rand()%(under20+btw);
-    temp->house.chronDu50=r_U50ch;
-
-    temp->next = NULL;
-
-    return temp;
-
-} //// End of random household generation function
+ //// End of random household generation function
 
 //head->next->n
 
 ////Add random household to list
-void addRandom(struct node **head) {
 
-    printf("Insert call");
-
-    struct node *new_node = randomNode();
-
-    if(*head == NULL) {
-
-        *head = new_node;
-
-        return;
-
-    }
-
-    struct node *temp = *head;
-
-    while(temp->next != NULL) {
-
-        temp = temp->next;
-
-        temp->next = new_node;
-    }
-}///// End of add function
 
 
 
