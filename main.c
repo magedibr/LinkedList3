@@ -8,7 +8,7 @@ int main() {
 
     struct node *head = NULL;
 
-    int go = 1, choice, val1, val2, val3;
+    int on = 1, choice, val1, val2, val3;
 
     int minTest;
 
@@ -21,7 +21,7 @@ int main() {
  create(&head);
 
 
-    while(go) {
+    while(on) {
 
         printf("\n\n***Population Info Menu***\n");
 
@@ -137,10 +137,11 @@ int main() {
                 head = NULL;
                 printf("File contents : \n");
                 readFromFile(&head);
-                go=0;
+
                 break;
 
             case 0:
+                    on=0;
                 break;
 
             default:

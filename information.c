@@ -7,19 +7,14 @@
 
 void create(struct node **head){
 
-    printf("Adding 100 randomly generated records to the database");
+    printf("Adding 100 randomly generated records to the database\n");
 
     int i =0;
     for(i = 0; i < 5; i++) {
-        puts("asd");
-        printf("%d",i);
+
         addRandom(head);
-
-
-
-
-      //  printHousehold(head->house);
     }
+        printf("%d many records inserted\n",i);
 }
 
 
@@ -65,7 +60,7 @@ struct node * newNode(struct household house) {
 
 //Generate random household
 struct node *randomNode() {
-    // srand(time(NULL));
+
     struct node *temp = (struct node *)malloc(sizeof(struct node));
     int l =0;
     l++;
@@ -88,19 +83,20 @@ struct node *randomNode() {
     temp->house.town = (char *)malloc(sizeof(char) * strlen(towns[town_ind]));
     strcpy(temp->house.town,towns[town_ind]);
 
-    ///malloc needed?
+
     //Assign random size from 1-10 members
     int r_size = rand() % 10 + 1;
     temp->house.h_Size = r_size;
 
 
     //Assign random under 20
-
-    // temp->house.un20=under20;
     int under20 = rand()% r_size;
+     temp->house.un20=under20;
+
     int j = r_size-under20;  //20++
     int btw = rand()%j
     ;
+
     temp->house.bt2050=btw;
 
     int abv = r_size-(under20+btw);
@@ -127,13 +123,13 @@ struct node *randomNode() {
 }
  //// End of random household generation function
 
-//head->next->n
+
 
 ////Add random household to list
 
 void addRandom(struct node **head) {
 
-    printf("Insert call");
+
 
     struct node *new_node = randomNode();
 
@@ -477,7 +473,7 @@ int getRegion() {
 
         if (scanf("%d", &choice) == 1 && (choice > 0 && choice < 4)) { return choice-1; }
         else {
-            printf("Invalid data. You should enter one integer in the range 1 through 3 or enter 0 to exit. Try again.\n");
+            printf("Invalid data. You should enter one integer in the range 1 through 3. Try again.\n");
             purgeData();
             getRegion();
         }
@@ -499,7 +495,7 @@ int getTown() {
 
         if (scanf("%d", &choice) == 1 && (choice > 0 && choice < 7)) { return choice-1; }
         else {
-            printf("Invalid data. You should enter one integer in the range 1 through 6 or enter 0 to exit. Try again.\n");
+            printf("Invalid data. You should enter one integer in the range 1 through 6. Try again.\n");
             purgeData();
             getTown();
         }
