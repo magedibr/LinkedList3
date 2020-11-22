@@ -20,29 +20,7 @@ int main() {
     srand(time(NULL));
 
 
-    //Node creation
-   for(int i =0;i<10;i++){
-            printf("%d\n",i);
-
-       printf("Insert call");
-
-       struct node *new_node = randomNode();
-
-       if(head == NULL){head = new_node;
-       continue;}
-
-       struct node *temp = head;
-
-
-
-       while(temp->next != NULL)
-
-           temp = temp->next;
-
-       temp->next = new_node;
-
-//printHousehold(head->house);
-   }
+ create(&head);
 
 
 
@@ -194,87 +172,5 @@ int main() {
     }
 
 }
-void addRandom(struct node **head) {
-
-    printf("Insert call");
-
-    struct node *new_node = randomNode();
-
-    if(*head == NULL) {
-
-        *head = new_node;
-
-        return;
-
-    }
-
-    struct node *temp = *head;
-
-    while(temp->next != NULL)
-
-        temp = temp->next;
-
-    temp->next = new_node;
-
-}
-
-struct node *randomNode() {
-    // srand(time(NULL));
-    struct node *temp = (struct node *)malloc(sizeof(struct node));
-    int l =0;
-    l++;
-    printf("%d DIFF NODES",l);
-    //Random town~region~race generation
-    int town_ind = rand() % 6;
-    int region_ind = town_ind / 2;
-    int race_ind = rand() % 5;
-
-    //Assign random race
-    temp->house.race_of_head = (char *)malloc(sizeof(char) * strlen(races[race_ind]));
-    strcpy(temp->house.race_of_head,races[race_ind]);
-
-    //Assign random region
-    temp->house.region = (char *)malloc(sizeof(char) * strlen(regions[region_ind]));
-    strcpy(temp->house.region,regions[region_ind]);
-
-    //Assign random town
-    temp->house.town = (char *)malloc(sizeof(char) * strlen(towns[town_ind]));
-    strcpy(temp->house.town,towns[town_ind]);
-
-    ///malloc needed?
-    //Assign random size from 1-10 members
-    int r_size = rand() % 10 + 1;
-    temp->house.h_Size = r_size;
 
 
-    //Assign random under 20
-
-    // temp->house.un20=under20;
-    int under20 = rand()% r_size;
-    int j = r_size-under20;  //20++
-    int btw = rand()%j
-    ;
-    temp->house.bt2050=btw;
-
-    int abv = r_size-(under20+btw);
-    temp->house.abv50=abv;
-
-
-    //Assign random tested qty
-    int r_tested = rand()% r_size+ 1;
-    temp->house.tested=r_tested;
-
-    //Assign random positivity rate
-    int r_positive= rand()% r_tested+1;
-    temp->house.positive=r_positive;
-
-    //random U50 chronic D
-    int lf = under20+btw;
-
-    temp->house.chronDu50=0;
-
-    temp->next = NULL;
-
-    return temp;
-
-}
