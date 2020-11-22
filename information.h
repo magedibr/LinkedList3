@@ -56,8 +56,8 @@ void removeAtMiddle(struct node** prevNode, struct node **currNode);
 void removeAtEnd(struct node **prevNode);
 void deleteRTR(struct node **head, const char* region, const char* town, const char* race);
 
-void writeToFile(struct node **head, const char* filename);
-void readFromFile(struct node **head, const char* filename);
+void writeToFile(struct node **head);
+void readFromFile(struct node **head);
 
 int getRegion();
 int getTown();

@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <time.h>
 #include "information.h"
 
@@ -15,16 +14,11 @@ int main() {
 
     struct household userHouse;
 
-    char filename[20];
 
     srand(time(NULL));
 
 
  create(&head);
-
-
-
-
 
 
     //turn into a func that accepts head as a parameter?
@@ -129,34 +123,21 @@ int main() {
                 break;
 
             case 8:
+                printf("%10s%10s%15s%20s%15s%15s\n","S.Num","Size","Total tested","Race","Region" ,"Town");
                 displayAll(head);
 
                 break;
 
-
-
             case 9:
-                printf("Enter filename to write to : \n");
 
-                scanf("%s",filename);
-
-                writeToFile(&head,filename);
-
-                printf("Data writtten to file successfully");
-
+                writeToFile(&head);
                 break;
 
 
             case 10:
                 head = NULL;
-
-                printf("Enter filename to read from : \n");
-
-                scanf("%s",filename);
-
-                readFromFile(&head,filename);
-
-                printf("Data loaded from file file successfully");
+                printf("File contents : \n");
+                readFromFile(&head);
                 go=0;
                 break;
 

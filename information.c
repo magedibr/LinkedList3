@@ -190,25 +190,10 @@ void add(struct node **head,struct household house) {
 
 ////Print function
 void printHousehold(struct household h) {
+int i;
+    for( i =0;i<MAX_VAL;i++);
 
-    printf("\nRegion : %s\n",h.region);
-
-    printf("Town: %s\n",h.town);
-
-    printf("Race of Head of the Household: %s\n",h.race_of_head);
-
-    printf("Number of people in the household: %d\n",h.h_Size);
-
-    printf("Number of people tested: $%.2d\n",h.tested);
-
-    printf("Covid positive cases: %d\n",h.positive);
-
-    printf("Number of people under the age of 20: %d\n",h.un20);
-
-    printf("Number of people between the ages of 20-50\n: %d",h.bt2050);
-
-    printf("Number of people above the age of 50: %d\n",h.abv50);
-
+        printf(" %10d%10d%15d%20s%15s%15s\n", (i),h.h_Size,h.tested,h.race_of_head,h.region,h.town);
 
 
 }////End of print function
@@ -428,9 +413,9 @@ void deleteRTR(struct node **head, const char* region, const char* town, const c
 
 
 
-void writeToFile(struct node **head, const char* filename) {
+void writeToFile(struct node **head) {
 
-    FILE *fp = fopen("filename.txt","w+");
+    FILE *fp = fopen("houseinfo.txt","w+");
 
     if(fp == NULL) {
 
@@ -446,21 +431,20 @@ void writeToFile(struct node **head, const char* filename) {
         dex++;
 
         fprintf (fp,"%s", temp->house.region );
-
         temp = temp->next;
-
     }
-    puts("Please restart program to read file contents:");
+
+    puts("Content saved to houseinfo.txt");
     fclose(fp);
 
 }
 
-void readFromFile(struct node **head, const char* filename) {
+void readFromFile(struct node **head) {
 
 
     int c;
     FILE *file;
-    file = fopen("filename.txt", "r");
+    file = fopen("houseinfo.txt", "r");
     if (file) {
         while ((c = getc(file)) != EOF)
             putchar(c);
