@@ -18,7 +18,7 @@ void create(struct node **head){
 
     }
 
-    printf("%d many records inserted",i);
+    printf("%d  records inserted\n\n",i);
 }////End of create function
 
 ////New node creation
@@ -183,7 +183,7 @@ void printHousehold(struct household h) {
 
     static int i=0;
 
-    printf("%20d%20d%25d%25s%25s%20s\n",(i+=1),h.h_Size,h.tested,h.race,h.region,h.town);
+    printf("%20d%20d%20d%20s%25s%20s\n",(i+=1),h.h_Size,h.tested,h.race,h.region,h.town);
 
 }////End of print function
 
@@ -229,7 +229,7 @@ void showRegion(struct node *head, const char *region) {
 void showAll(struct node *head) {
 
     struct node *temp = head;
-
+    printf("%20s%20s%20s%20s%25s%20s\n\n","S.Num","Size","Total tested","Race","Region" ,"Town");
     while(temp != NULL) {
 
         printHousehold(temp->house);

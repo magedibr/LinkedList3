@@ -11,7 +11,7 @@ static const char *regions[] = {"Peel","York","Durham"};
 
 static const char *towns[] = {"Brampton","Mississauga","Maple","Vaughan","Whitby","Oshawa"};
 
-static const char *races[] = {"Caucasian", "Indigenous", "African American","Asian", "Other"};
+static const char *races[] = {"Caucasian", "Indigenous", "A.American","Asian", "Other"};
 
 
 struct household {

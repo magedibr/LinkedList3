@@ -23,7 +23,7 @@ int main() {
 
     //Random record generation
     create(&head);
-
+    showAll(head);
 
     while(on) {
 
@@ -126,7 +126,7 @@ int main() {
 
             case 8:
 
-                printf("%20s%20s%25s%25s%25s%20s\n\n","S.Num","Size","Total tested","Race","Region" ,"Town");
+
                 showAll(head);
 
                 break;
