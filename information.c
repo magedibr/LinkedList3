@@ -183,7 +183,7 @@ void printHousehold(struct household h) {
 
     static int i=0;
 
-    printf("%20d%20d%20d%20s%25s%20s\n",(i+=1),h.h_Size,h.tested,h.race,h.region,h.town);
+    printf("%20d%20d%20d%20d%20s%25s%20s\n",(i+=1),h.h_Size,h.tested,h.positive,h.race,h.region,h.town);
 
 }////End of print function
 
@@ -229,7 +229,7 @@ void showRegion(struct node *head, const char *region) {
 void showAll(struct node *head) {
 
     struct node *temp = head;
-    printf("%20s%20s%20s%20s%25s%20s\n\n","S.Num","Size","Total tested","Race","Region" ,"Town");
+    printf("%20s%20s%20s%15s%10s%30s%15s\n\n","S.Num","Size","Total tested","      Total Tested Positive","Race","Region" ,"Town");
     while(temp != NULL) {
 
         printHousehold(temp->house);
@@ -413,13 +413,13 @@ void textOutput(struct node **head) {
 
     struct node *temp = *head;
     int dex =0;
-    fprintf(fp,"%20s%20s%25s%25s%25s%20s\n\n","S.Num","Size","Total tested","Race","Region" ,"Town");
+    fprintf(fp,"%20s%20s%20s%15s%10s%30s%15s\n\n","S.Num","Size","Total tested","      Total Tested Positive","Race","Region" ,"Town");
 
 
     while(temp != NULL) {
         dex++;
 
-        fprintf (fp,"%20d%20d%25d%25s%25s%20s\n", dex,temp->house.h_Size,temp->house.tested,temp->house.race,temp->house.region,temp->house.town);
+        fprintf(fp,"%20d%20d%20d%20d%20s%25s%20s\n", dex,temp->house.h_Size,temp->house.tested,temp->house.positive,temp->house.race,temp->house.region,temp->house.town);
         temp = temp->next;
     }
 
